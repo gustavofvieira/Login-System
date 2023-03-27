@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Luiza.Labs.Infra.Data/1.0.0": {
+        "dependencies": {
+          "Luiza.Labs.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Luiza.Labs.Infra.Data.dll": {}
+        }
+      },
+      "Luiza.Labs.Domain/1.0.0": {
+        "runtime": {
+          "Luiza.Labs.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Luiza.Labs.Infra.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Luiza.Labs.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
