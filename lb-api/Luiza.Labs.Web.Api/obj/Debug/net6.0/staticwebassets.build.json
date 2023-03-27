@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "zS7ZuuZIWOAsThuXWT33I9nipr1GQvlOW+bEs3qCwbo=",
+  "Source": "Luiza.Labs.Web.Api",
+  "BasePath": "_content/Luiza.Labs.Web.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
