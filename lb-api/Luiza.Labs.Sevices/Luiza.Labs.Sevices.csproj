@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Luiza.Labs.Domain\Luiza.Labs.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Auth\" />
+  </ItemGroup>
+
 </Project>

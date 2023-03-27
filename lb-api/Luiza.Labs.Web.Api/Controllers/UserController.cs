@@ -16,7 +16,6 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpGet]
         [Route("authenticated")]
         [Authorize]
-        //[AuthorizationFilterAttribute]
         public string Authenticated() => String.Format("Autenticado - {0}", User.Identity.Name);
 
         // GET api/<LoginController>/5
