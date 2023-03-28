@@ -1,5 +1,6 @@
 ﻿using Luiza.Labs.Domain.Interfaces.Repositories;
 using Luiza.Labs.Domain.Interfaces.Services;
+using Luiza.Labs.Domain.Interfaces.Services.Auth;
 using Luiza.Labs.Infra.Data.Repositories;
 using Luiza.Labs.Infra.Setup.Extensions;
 using Luiza.Labs.Sevices.Services;
@@ -21,13 +22,15 @@ namespace Luiza.Labs.Infra.Setup
 
             services
                 .AddMongoClientConfiguration(Configuration)
-                .AddLuizaLabsContext(Configuration);
+                .AddLuizaLabsContext(Configuration)
+                .AddLuizaLabsJwtToken(Configuration);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ITokenService, TokenService>();
+            //services.AddScoped<IOrderService, OrderService>();
         }
 
         public void ConfigureRepositories(IServiceCollection services)

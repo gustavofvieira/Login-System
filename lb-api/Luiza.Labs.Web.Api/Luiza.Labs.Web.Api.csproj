@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Luiza.Labs.Domain\Luiza.Labs.Domain.csproj" />
     <ProjectReference Include="..\Luiza.Labs.Infra.Data\Luiza.Labs.Infra.Data.csproj" />
+    <ProjectReference Include="..\Luiza.Labs.Infra.Setup\Luiza.Labs.Infra.Setup.csproj" />
     <ProjectReference Include="..\Luiza.Labs.Sevices\Luiza.Labs.Sevices.csproj" />
   </ItemGroup>
 

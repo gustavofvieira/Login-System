@@ -11,9 +11,9 @@ namespace Luiza.Labs.Infra.Data.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly OrderContext _context;
+        private readonly LuizaLabsContext _context;
         public OrderRepository(
-            OrderContext context)
+            LuizaLabsContext context)
         {
             _context = context;
         }

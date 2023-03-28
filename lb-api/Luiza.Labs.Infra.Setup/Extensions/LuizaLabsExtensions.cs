@@ -22,14 +22,9 @@ namespace Luiza.Labs.Infra.Setup.Extensions
                 );
         }
 
-        //public static IServiceCollection AddLuizaLabsJwtToken(this IServiceCollection services, IConfiguration config)
-        //{
-            //return services
-            //     .AddScoped(sp =>
-            //        new LuizaLabsContext(
-            //            sp.GetRequiredService<MongoClient>().GetDatabase(config.get("LuizaLabsDatabase"))
-            //        )
-            //    );
-        //}
+        public static IServiceCollection AddLuizaLabsJwtToken(this IServiceCollection services, IConfiguration config)
+        {
+            return services.AddSingleton(config.GetSection("Settings").GetSection("Secret"));
+        }
     }
 }

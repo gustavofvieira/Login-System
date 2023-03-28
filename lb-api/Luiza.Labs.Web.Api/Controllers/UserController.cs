@@ -1,4 +1,5 @@
-﻿using Luiza.Labs.Domain.Models;
+﻿using Luiza.Labs.Domain.Interfaces.Services;
+using Luiza.Labs.Domain.Models;
 using Luiza.Labs.Infra.Data.Repositories;
 using Luiza.Labs.Sevices.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -12,6 +13,11 @@ namespace Luiza.Labs.Web.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
         // GET: api/<LoginController>
         [HttpGet]
         [Route("authenticated")]
@@ -35,24 +41,34 @@ namespace Luiza.Labs.Web.Api.Controllers
         public string Employee() => "Funcionario";
 
 
+        //// POST api/<LoginController>
+        //[HttpPost]
+        //[Route("login2")]
+        //[AllowAnonymous]
+        //public async Task<ActionResult<dynamic>> Authenticate2([FromBody] User model)
+        //{
+        //    var user = UserRepository.Get(model.UserName, model.Password);
+
+        //    if (user == null)
+        //        return NotFound(new { message = "Usuário ou senha incorretos!"});
+
+        //    var token = TokenService.GenerateToken(user);
+        //    user.Password = "";
+        //    return new
+        //    {
+        //        user = user,
+        //        token = token
+        //    };
+        //}
+
         // POST api/<LoginController>
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
+        public async Task<ActionResult<string>> Authenticate([FromBody] User model)
         {
-            var user = UserRepository.Get(model.UserName, model.Password);
-
-            if (user == null)
-                return NotFound(new { message = "Usuário ou senha incorretos!"});
-
-            var token = TokenService.GenerateToken(user);
-            user.Password = "";
-            return new
-            {
-                user = user,
-                token = token
-            };
+            var token = await _userService.AuthenticateAsync(model);
+            return Ok(token);
         }
     }
 }
