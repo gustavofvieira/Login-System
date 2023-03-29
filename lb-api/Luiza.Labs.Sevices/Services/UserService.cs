@@ -13,7 +13,6 @@ namespace Luiza.Labs.Sevices.Services
 {
     public class UserService : IUserService
     {
-        //private readonly HashAlgorithm _algorithm;
         private readonly IValidator<User> _validator;
         private readonly ILogger _logger;
         private readonly IEmailService _emailService;
@@ -21,10 +20,12 @@ namespace Luiza.Labs.Sevices.Services
         private readonly ITokenService _tokenService;
 
         public UserService(
-            //HashAlgorithm algorithm,
-            IValidator<User> validator, ILogger<UserService> logger,IUserRepository userRepository,ITokenService tokenService, IEmailService emailService)
+            IValidator<User> validator, 
+            ILogger<UserService> logger,
+            IUserRepository userRepository,
+            ITokenService tokenService, 
+            IEmailService emailService)
         {
-            //_algorithm = algorithm;
             _validator = validator;
             _logger = logger;
             _userRepository = userRepository;
@@ -39,7 +40,7 @@ namespace Luiza.Labs.Sevices.Services
             {
                 _logger.LogInformation("[{0}] - Started", nameof(AddUser));
                 _validator.ValidateAndThrow(user);
-                user.Password = CriptografarSenha(user.Password);
+                user.Password = EncryptPassword(user.Password);
                 await _userRepository.AddUser(user);
 
                 _logger.LogInformation("Send Email to: {0}", user.EmailAdress);
@@ -54,42 +55,9 @@ namespace Luiza.Labs.Sevices.Services
             }
         }
 
-
-
-        public string CriptografarSenha(string senha)
-        {
-            var _algorithm = HashAlgorithm.Create();
-            var encodedValue = Encoding.UTF8.GetBytes(senha);
-            var encryptedPassword = _algorithm.ComputeHash(encodedValue);
-
-            var sb = new StringBuilder();
-            foreach (var caracter in encryptedPassword)
-            {
-                sb.Append(caracter.ToString("X2"));
-            }
-
-            return sb.ToString();
-        }
-
-        public bool VerificarSenha(string senhaDigitada, string senhaCadastrada)
-        {
-            var _algorithm = HashAlgorithm.Create(); 
-            if (string.IsNullOrEmpty(senhaCadastrada))
-                throw new NullReferenceException("Cadastre uma senha.");
-
-            var encryptedPassword = _algorithm.ComputeHash(Encoding.UTF8.GetBytes(senhaDigitada));
-
-            var sb = new StringBuilder();
-            foreach (var caractere in encryptedPassword)
-            {
-                sb.Append(caractere.ToString("X2"));
-            }
-
-            return sb.ToString() == senhaCadastrada;
-        }
-
         public async Task<string> AuthenticateAsync(LoginVM loginVM)
         {
+            loginVM.Password = EncryptPassword(loginVM.Password);
             var userRepository = await _userRepository.AuthenticateAsync(loginVM);
 
             if (userRepository == null)
@@ -97,6 +65,27 @@ namespace Luiza.Labs.Sevices.Services
 
            var token = _tokenService.GenerateToken(userRepository);
            return token;
+        }
+
+        public string EncryptPassword(string senha)
+        {
+            //byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            //using (SHA256Managed sha256 = new SHA256Managed())
+            //{
+            //    byte[] hash = sha256.ComputeHash(bytes);
+            //    return Convert.ToBase64String(hash);
+            //}
+            byte[] bytes = Encoding.UTF8.GetBytes(senha);
+            SHA256Managed sha256 = new SHA256Managed();
+            byte[] hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
+
+        public bool VerifyPassword(string senhaDigitada, string senhaCadastrada)
+        {
+            var senhaHash = EncryptPassword(senhaDigitada);
+
+            return senhaHash == senhaCadastrada;
         }
     }
 }

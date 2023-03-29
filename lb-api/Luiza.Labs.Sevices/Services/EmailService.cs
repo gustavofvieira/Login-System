@@ -1,12 +1,18 @@
 ﻿using Luiza.Labs.Domain.Interfaces.Services;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Logging;
 
 namespace Luiza.Labs.Sevices.Services
 {
     public class EmailService : IEmailService
     {
-        //protected readonly ILogger _logger;
+        protected readonly ILogger _logger;
+
+        public EmailService(ILogger<EmailService> logger)
+        {
+            _logger = logger;
+        }
         public Task SendEmail(string emailAdress)
         {
             throw new NotImplementedException();
@@ -41,7 +47,9 @@ namespace Luiza.Labs.Sevices.Services
 
         public void SendConfirmation(string emailAdress)
         {
-
+            _logger.LogInformation("[{0}] -  Started",nameof(SendConfirmation));
+            SendMail(emailAdress);
+            _logger.LogInformation("[{0}] -  Finish",nameof(SendConfirmation));
         }
 
         public void SendRecovery(string emailAdress)
