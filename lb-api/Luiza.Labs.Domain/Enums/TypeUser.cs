@@ -8,7 +8,7 @@ namespace Luiza.Labs.Domain.Enums
 {
     public enum TypeUser
     {
-        manager = 0,
-        employee = 1
+        Manager = 0,
+        Employee = 1
     }
 }

@@ -42,7 +42,6 @@ namespace Luiza.Labs.Infra.Setup
         public void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
         }
 
         public void ConfigureValidators(IServiceCollection services) 

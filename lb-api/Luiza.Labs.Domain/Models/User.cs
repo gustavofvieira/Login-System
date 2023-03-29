@@ -14,10 +14,10 @@ namespace Luiza.Labs.Domain.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [JsonIgnore]
-        public Guid _id { get; set; }
+        public string _id { get; set; } = string.Empty;
         public Guid UserId { get; set; }
-        public string UserName { get; set; } = string.Empty;
-        public string EmailAdress { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string EmailAddress { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
     }

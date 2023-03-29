@@ -7,11 +7,11 @@ namespace Luiza.Labs.Domain.Validations
     {
         public UserValidator()
         {
-            RuleFor(x => x.UserName)
+            RuleFor(x => x.Name)
                 .NotNull()
-                .Length(0, 10);
+                .Length(2, 50);
             
-            RuleFor(x => x.EmailAdress)
+            RuleFor(x => x.EmailAddress)
                 .NotNull()
                 .EmailAddress();
 

@@ -21,7 +21,7 @@ namespace Luiza.Labs.Infra.Data.Repositories
 
         public async Task<User> AuthenticateAsync(LoginVM loginVM)
         {
-           var userDb = await _context.Users.AsQueryable().FirstOrDefaultAsync(u => u.UserName.Equals(loginVM.Email) && u.Password.Equals(loginVM.Password));
+           var userDb = await _context.Users.AsQueryable().FirstOrDefaultAsync(u => u.EmailAddress.Equals(loginVM.EmailAddress) && u.Password.Equals(loginVM.Password));
            return userDb;
         }
     }

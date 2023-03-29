@@ -4,6 +4,7 @@ using Luiza.Labs.Domain.Interfaces.Repositories;
 using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Interfaces.Services.Auth;
 using Luiza.Labs.Domain.Models;
+using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.ViewModel;
 using Microsoft.Extensions.Logging;
 using System.Security.Cryptography;
@@ -43,8 +44,8 @@ namespace Luiza.Labs.Sevices.Services
                 user.Password = EncryptPassword(user.Password);
                 await _userRepository.AddUser(user);
 
-                _logger.LogInformation("Send Email to: {0}", user.EmailAdress);
-                _emailService.SendConfirmation(user.EmailAdress);
+                _logger.LogInformation("Send Email to: {0}", user.EmailAddress);
+                _emailService.SendConfirmation(user.EmailAddress);
                 _logger.LogInformation("[{0}] Send Email with success", nameof(AddUser));
                 _logger.LogInformation("[{0}] - Finish", nameof(AddUser));
             }
@@ -55,7 +56,7 @@ namespace Luiza.Labs.Sevices.Services
             }
         }
 
-        public async Task<string> AuthenticateAsync(LoginVM loginVM)
+        public async Task<Token> AuthenticateAsync(LoginVM loginVM)
         {
             loginVM.Password = EncryptPassword(loginVM.Password);
             var userRepository = await _userRepository.AuthenticateAsync(loginVM);

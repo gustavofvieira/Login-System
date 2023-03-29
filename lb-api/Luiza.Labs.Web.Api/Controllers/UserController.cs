@@ -3,6 +3,7 @@ using Luiza.Labs.Domain.Constants;
 using Luiza.Labs.Domain.Enums;
 using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Models;
+using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -52,7 +53,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<string>> Authenticate([FromBody] LoginVM model)
+        public async Task<ActionResult<Token>> Authenticate([FromBody] LoginVM model)
         {
             var token = await _userService.AuthenticateAsync(model);
             return Ok(token);
@@ -60,7 +61,7 @@ namespace Luiza.Labs.Web.Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        //[Authorize(Roles = Roles.Manager)]
+        [Authorize(Roles = Roles.Manager)]
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
             await _userService.AddUser(model);
