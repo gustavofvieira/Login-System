@@ -1,9 +1,12 @@
-﻿using Luiza.Labs.Domain.Interfaces.Services;
+﻿using FluentValidation;
+using Luiza.Labs.Domain.Constants;
+using Luiza.Labs.Domain.Enums;
+using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Models;
-using Luiza.Labs.Infra.Data.Repositories;
-using Luiza.Labs.Sevices.Services;
+using Luiza.Labs.Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,10 +16,14 @@ namespace Luiza.Labs.Web.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private IValidator<User> _validator;
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IEmailService _emailService;
+        public UserController(IValidator<User> validator,IUserService userService, IEmailService emailService)
         {
+            _validator = validator;
             _userService = userService;
+            _emailService = emailService;
         }
         // GET: api/<LoginController>
         [HttpGet]
@@ -41,34 +48,33 @@ namespace Luiza.Labs.Web.Api.Controllers
         public string Employee() => "Funcionario";
 
 
-        //// POST api/<LoginController>
-        //[HttpPost]
-        //[Route("login2")]
-        //[AllowAnonymous]
-        //public async Task<ActionResult<dynamic>> Authenticate2([FromBody] User model)
-        //{
-        //    var user = UserRepository.Get(model.UserName, model.Password);
-
-        //    if (user == null)
-        //        return NotFound(new { message = "Usuário ou senha incorretos!"});
-
-        //    var token = TokenService.GenerateToken(user);
-        //    user.Password = "";
-        //    return new
-        //    {
-        //        user = user,
-        //        token = token
-        //    };
-        //}
-
         // POST api/<LoginController>
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
-        public async Task<ActionResult<string>> Authenticate([FromBody] User model)
+        public async Task<ActionResult<string>> Authenticate([FromBody] LoginVM model)
         {
             var token = await _userService.AuthenticateAsync(model);
             return Ok(token);
+        }
+
+        [HttpPost]
+        [Route("create")]
+        //[Authorize(Roles = Roles.Manager)]
+        public async Task<ActionResult<string>> Create([FromBody] User model)
+        {
+            await _userService.AddUser(model);
+            return Ok();
+        }
+
+
+        [HttpPost]
+        [Route("recoverPassword")]
+        [AllowAnonymous]
+        public ActionResult RecoverPassword([FromBody] string email)
+        {
+            _emailService.SendRecovery(email);
+            return Ok();
         }
     }
 }

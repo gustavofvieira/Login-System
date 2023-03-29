@@ -1,30 +1,28 @@
 ﻿using Luiza.Labs.Domain.Interfaces.Repositories;
 using Luiza.Labs.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Luiza.Labs.Domain.ViewModel;
+using Luiza.Labs.Infra.Data.Context;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace Luiza.Labs.Infra.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        //simulação, depois implementar a bagaça do repositorio
-        public static User Get(string username, string password)
-        {
-            var users = new List<User>
-            {
-                new() { Id = 1, UserName = "batman", Password = "batman", Role = "manager" },
-                new() { Id = 2, UserName = "robin", Password = "robin", Role = "employee" }
-            };
 
-            return users.FirstOrDefault(u => u.UserName.ToLower().Equals(username) && u.Password.ToLower().Equals(password));
+        private readonly LuizaLabsContext _context;
+        public UserRepository(
+            LuizaLabsContext context)
+        {
+            _context = context;
         }
 
-        public async Task<User> AuthenticateAsync(User user)
+        public async Task AddUser(User user) => await _context.Users.InsertOneAsync(user);
+
+        public async Task<User> AuthenticateAsync(LoginVM loginVM)
         {
-            throw new NotImplementedException();
+           var userDb = await _context.Users.AsQueryable().FirstOrDefaultAsync(u => u.UserName.Equals(loginVM.Email) && u.Password.Equals(loginVM.Password));
+           return userDb;
         }
     }
 }

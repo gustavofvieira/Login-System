@@ -9,12 +9,12 @@ namespace Luiza.Labs.Sevices.Services
 {
     public class TokenService : ITokenService
     {
-        private readonly Settings _settings;
+        //private readonly Settings _settings;
 
-        public TokenService(Settings settings)
-        {
-            _settings = settings;
-        }
+        //public TokenService(Settings settings)
+        //{
+        //    _settings = settings;
+        //}
         public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
