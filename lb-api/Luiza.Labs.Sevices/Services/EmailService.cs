@@ -12,9 +12,6 @@ namespace Luiza.Labs.Sevices.Services
             throw new NotImplementedException();
         }
 
-        //gu_conta_de_teste@outlook.com
-        //dE1@oito@1
-
         public void SendMail(string emailAdress)
         {
             var email = new MimeMessage();
@@ -72,31 +69,5 @@ namespace Luiza.Labs.Sevices.Services
                 smtp.Disconnect(true);
             }
         }
-
-
-
-        //public void CreateTestMessage2(string server)
-        //{
-        //    server = "smtp.gmail.com";
-        //    string to = "gustavofvieira@live.com";
-        //    string from = "gustavofvieira51@gmail.com";
-        //    MailMessage message = new MailMessage(from, to);
-        //    message.Subject = "Using the new SMTP client.";
-        //    message.Body = @"Using this new feature, you can send an email message from an application very easily.";
-        //    SmtpClient client = new SmtpClient(server);
-        //    // Credentials are necessary if the server requires the client
-        //    // to authenticate before it will send email on the client's behalf.
-        //    client.UseDefaultCredentials = true;
-
-        //    try
-        //    {
-        //        client.Send(message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",
-        //            ex.ToString());
-        //    }
-        //}
     }
 }
