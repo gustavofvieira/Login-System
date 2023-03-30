@@ -17,9 +17,10 @@ namespace Luiza.Labs.Infra.Setup.Extensions
                 );
         }
 
-        public static IServiceCollection AddLuizaLabsJwtToken(this IServiceCollection services, IConfiguration config)
-        {
-            return services.AddSingleton(config.GetSection("Settings").GetSection("Secret"));
-        }
+        //public static IServiceCollection AddLuizaLabsJwtToken(this IServiceCollection services, IConfiguration config)
+        //{
+        //    //return services.AddSingleton(config.GetSection("Settings").GetSection("Secret"));
+        //    return services.AddOptions<SettingsOptions>(config.GetSection("Settings"));
+        //}
     }
 }

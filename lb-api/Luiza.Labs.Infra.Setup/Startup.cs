@@ -3,6 +3,7 @@ using Luiza.Labs.Domain.Interfaces.Repositories;
 using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Interfaces.Services.Auth;
 using Luiza.Labs.Domain.Models;
+using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.Validations;
 using Luiza.Labs.Infra.Data.Repositories;
 using Luiza.Labs.Infra.Setup.Extensions;
@@ -29,26 +30,31 @@ namespace Luiza.Labs.Infra.Setup
             services
                 .AddMongoClientConfiguration(Configuration)
                 .AddLuizaLabsContext(Configuration);
-                //.AddLuizaLabsJwtToken(Configuration);
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        private void ConfigureServices(IServiceCollection services)
         {
+            //services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IEmailService, EmailService>();
         }
 
-        public void ConfigureRepositories(IServiceCollection services)
+        private void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
         }
 
-        public void ConfigureValidators(IServiceCollection services) 
+        private void ConfigureValidators(IServiceCollection services) 
         {
             //services.AddSingleton<HashAlgorithm>();
             services.AddScoped<IValidator<User>, UserValidator>();
 
         }
+
+        //private void ConfigureOptions(IServiceCollection services) 
+        //{
+        //    services.Configure<Settings>(Configuration.GetSection("Settings"));
+        //}
     }
 }

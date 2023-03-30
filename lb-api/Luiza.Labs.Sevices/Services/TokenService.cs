@@ -1,6 +1,8 @@
 ﻿using Luiza.Labs.Domain.Interfaces.Services.Auth;
 using Luiza.Labs.Domain.Models;
 using Luiza.Labs.Domain.Models.Auth;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,15 +12,21 @@ namespace Luiza.Labs.Sevices.Services
 {
     public class TokenService : ITokenService
     {
-        //private readonly Settings _settings;
+        //private readonly SettingsOptions _settings;
+        //private readonly IConfiguration _configuration;
 
-        //public TokenService(Settings settings)
+        //public TokenService(
+        //    //IOptions<SettingsOptions> settings,
+        //    IConfiguration configuration)
         //{
-        //    _settings = settings;
+        //    //_settings = settings.Value;
+        //    _configuration = configuration;
         //}
         public Token GenerateToken(User user)
         {
+
             var tokenHandler = new JwtSecurityTokenHandler();
+            //var key = Encoding.ASCII.GetBytes(_settings.Secret);
             var key = Encoding.ASCII.GetBytes("6e7b2ce2952496d9a8968259e8c2a3d4");
             var tokenDescriptor = new SecurityTokenDescriptor
             {

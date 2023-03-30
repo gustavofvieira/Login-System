@@ -542,7 +542,9 @@
         "dependencies": {
           "Luiza.Labs.Domain": "1.0.0",
           "MailKit": "3.6.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
           "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0",
           "MimeKit": "3.6.1",
           "System.IdentityModel.Tokens.Jwt": "6.10.0"
         },

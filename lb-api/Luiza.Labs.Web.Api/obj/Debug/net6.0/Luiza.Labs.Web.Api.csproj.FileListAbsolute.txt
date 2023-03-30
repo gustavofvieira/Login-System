@@ -1,10 +1,3 @@
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.csproj.AssemblyReference.cache
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.AssemblyInfoInputs.cache
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.AssemblyInfo.cs
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.csproj.CoreCompileInputs.cache
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\bin\Debug\net6.0\Luiza.Labs.Web.Api.exe
@@ -51,6 +44,13 @@ C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\b
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\bin\Debug\net6.0\Luiza.Labs.Infra.Data.pdb
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\bin\Debug\net6.0\Luiza.Labs.Infra.Setup.pdb
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\bin\Debug\net6.0\Luiza.Labs.Sevices.pdb
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.csproj.AssemblyReference.cache
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.AssemblyInfoInputs.cache
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.AssemblyInfo.cs
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.csproj.CoreCompileInputs.cache
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\Luiza.Labs.Web.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Web.Api\obj\Debug\net6.0\scopedcss\bundle\Luiza.Labs.Web.Api.styles.css

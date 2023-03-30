@@ -70,12 +70,6 @@ namespace Luiza.Labs.Sevices.Services
 
         public string EncryptPassword(string senha)
         {
-            //byte[] bytes = Encoding.UTF8.GetBytes(senha);
-            //using (SHA256Managed sha256 = new SHA256Managed())
-            //{
-            //    byte[] hash = sha256.ComputeHash(bytes);
-            //    return Convert.ToBase64String(hash);
-            //}
             byte[] bytes = Encoding.UTF8.GetBytes(senha);
             SHA256Managed sha256 = new SHA256Managed();
             byte[] hash = sha256.ComputeHash(bytes);

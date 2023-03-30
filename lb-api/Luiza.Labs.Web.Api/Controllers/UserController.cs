@@ -1,15 +1,11 @@
 ﻿using FluentValidation;
 using Luiza.Labs.Domain.Constants;
-using Luiza.Labs.Domain.Enums;
 using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Models;
 using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Luiza.Labs.Web.Api.Controllers
 {
@@ -17,12 +13,10 @@ namespace Luiza.Labs.Web.Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IValidator<User> _validator;
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
-        public UserController(IValidator<User> validator,IUserService userService, IEmailService emailService)
+        public UserController(IUserService userService, IEmailService emailService)
         {
-            _validator = validator;
             _userService = userService;
             _emailService = emailService;
         }

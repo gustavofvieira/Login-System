@@ -1,3 +1,4 @@
+using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Infra.Setup;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -8,8 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 var startup = new Startup(builder.Configuration);
 
 startup.ConfigureApp(builder.Services);
-
-
 
 builder.Services.AddCors();
 var key = Encoding.ASCII.GetBytes("6e7b2ce2952496d9a8968259e8c2a3d4");
