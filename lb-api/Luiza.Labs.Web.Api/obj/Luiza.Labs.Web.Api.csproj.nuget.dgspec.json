@@ -273,10 +273,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "MailKit": {
-              "target": "Package",
-              "version": "[3.6.0, )"
-            },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -288,10 +284,6 @@
             "Microsoft.Extensions.Options": {
               "target": "Package",
               "version": "[2.2.0, )"
-            },
-            "MimeKit": {
-              "target": "Package",
-              "version": "[3.6.1, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

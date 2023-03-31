@@ -21,19 +21,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpGet]
         [Route("authenticated")]
         [Authorize]
-        public string Authenticated() => String.Format("Autenticado - {0}", User?.Identity?.Name);
-
-
-        [HttpGet]
-        [Route("common")]
-        [Authorize(Roles = Roles.Common+","+ Roles.Adm)]
-        public string Common() => Roles.Common;
-
-        [HttpGet]
-        [Route("adm")]
-        [Authorize(Roles = Roles.Adm)]
-        public string Adm() => Roles.Adm;
-
+        public async Task<ActionResult<string>> Authenticated() => Ok(String.Format("Olá {0}", User?.Identity?.Name));
 
         [HttpPost]
         [Route("login")]
@@ -71,6 +59,15 @@ namespace Luiza.Labs.Web.Api.Controllers
             //_logger.LogInformation("[{Method}] - Started ", nameof(GetAll));
             var users = await _userService.GetAll();
             return Ok(users);
+        }
+
+        [HttpPost]
+        [Route("updatePassword")]
+        [Authorize(Roles = Roles.Adm+","+Roles.Common)]
+        public async Task<ActionResult<Token>> UpdatePassword([FromBody] User model)
+        {
+            await _userService.UpdatePassword(model);
+            return Ok();
         }
     }
 }

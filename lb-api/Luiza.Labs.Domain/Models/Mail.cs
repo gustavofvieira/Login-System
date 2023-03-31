@@ -16,5 +16,6 @@ namespace Luiza.Labs.Domain.Models
         public string EmailAddressFrom { get; set; } = string.Empty;
         public string EmailAddressTo { get; set; } = string.Empty;
         public string TextBody { get; set; } = string.Empty;
+        public string HtmlBody { get; set; } = string.Empty;
     }
 }

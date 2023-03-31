@@ -40,6 +40,13 @@ namespace Luiza.Labs.Infra.Data.Repositories
                     Builders<User>.Update.Set(c => c.Password, user.Password),
                     Builders<User>.Update.Set(c => c.UpdatedAt, DateTime.UtcNow)
                 ));
+        public async Task UpdatePassword(User user) =>
+        await _context.Users.FindOneAndUpdateAsync(
+                u => u.UserId.Equals(user.UserId),
+                Builders<User>.Update.Combine(
+                    Builders<User>.Update.Set(c => c.Password, user.Password),
+                    Builders<User>.Update.Set(c => c.UpdatedAt, DateTime.UtcNow)
+                ));
 
         public async Task<List<User>> GetAll() => await _context.Users.AsQueryable().ToListAsync();
     }

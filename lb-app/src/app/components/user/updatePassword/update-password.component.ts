@@ -2,15 +2,15 @@ import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/cor
 import {FormGroup, FormControl} from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserService } from 'src/services/user/user.service';
-import { Login } from '../login/login';
+import { Login } from '../../login/login';
 
 @Component({
-  selector: 'app-recover-pass',
-  templateUrl: './recover-pass.component.html',
-  styleUrls: ['./recover-pass.component.css']
+  selector: 'app-update-password',
+  templateUrl: './update-password.component.html',
+  styleUrls: ['./update-password.component.css']
 })
 
-export class RecoverPassComponent implements OnInit{
+export class UpdatePasswordComponent implements OnInit{
 
   constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService,
   private modalService: BsModalService) {}
@@ -32,10 +32,10 @@ export class RecoverPassComponent implements OnInit{
     // });
   }
 
-  SendRecoverPass(): void {
+  Send(): void {
     const login: Login = this.form.value;
     console.log("Login: ",login)
-      this.userService.RecoverPass(login.emailAddress).subscribe((resultado) => {
+      this.userService.RecoverPass(login.password).subscribe((resultado) => {
         console.log(resultado)
         // this.userService.Login().subscribe((registros) => {
         //   this.candidates = registros;

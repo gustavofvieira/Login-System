@@ -48,8 +48,9 @@ export class UserService implements HttpInterceptor {
   }
 
   RecoverPass(emailAddress: string) : Observable<any>{
+    console.log("service: ", emailAddress)
     const apiUrl = `${this.url}/recoverPassword`;
-    return this.http.post<any>(apiUrl, emailAddress, httpOptions) 
+    return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions) 
   }
 
 }

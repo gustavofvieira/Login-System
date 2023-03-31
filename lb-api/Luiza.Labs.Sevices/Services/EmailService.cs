@@ -1,8 +1,9 @@
-﻿using Luiza.Labs.Domain.Interfaces.Services;
+﻿using Luiza.Labs.Domain.Enums;
+using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Models;
-using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
-using MimeKit;
+using System.Net;
+using System.Net.Mail;
 
 namespace Luiza.Labs.Sevices.Services
 {
@@ -16,42 +17,34 @@ namespace Luiza.Labs.Sevices.Services
             _logger = logger;
         }
 
-        public void SendMail(Mail mail)
+        public void SendMail(Mail mail) 
         {
-            var email = new MimeMessage();
+            MailMessage mensagem = new MailMessage();
+            mensagem.From = new MailAddress(mail.EmailAddressFrom);
+            mensagem.To.Add(new MailAddress(mail.EmailAddressTo));
+            mensagem.Subject = mail.Subject;
+            mensagem.IsBodyHtml = true;
+            mensagem.Body = mail.HtmlBody;
 
-            email.From.Add(new MailboxAddress(mail.NameSend, mail.EmailAddressFrom));
-            email.To.Add(new MailboxAddress(mail.NameReceive, mail.EmailAddressTo));
-
-            email.Subject = mail.Subject;
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
-            {
-                Text = mail.TextBody
-            };
-            using (var smtp = new SmtpClient())
-            {
-                smtp.Connect("smtp.office365.com", 587, false);
-
-                // Note: only needed if the SMTP server requires authentication
-                smtp.Authenticate(mail.EmailAddressFrom, mail.Pass);
-
-                smtp.Send(email);
-                smtp.Disconnect(true);
-            }
+            SmtpClient cliente = new SmtpClient("smtp.office365.com", 587);
+            cliente.Credentials = new NetworkCredential(mail.EmailAddressFrom, mail.Pass);
+            cliente.EnableSsl = true;
+            cliente.Send(mensagem);
         }
-
 
         public void SendConfirmation(User user)
         {
             _logger.LogInformation("[{0}] -  Started",nameof(SendConfirmation));
+
+            var htmlBody = CreateBodyTemplate(user.Name, TemplateEmail.CreateSuccess);
             var mail = new Mail
             {
                 Subject = $"Congratulations {user.Name}, your account has created with success!",
-                TextBody = "Welcome to LuizaLabs, Your account has created in the App!",
                 EmailAddressTo = user.EmailAddress,
                 NameSend = user.Name,
-                Pass = "",
-                EmailAddressFrom = "gu_conta_de_teste@outlook.com"
+                Pass = "dE1@oito@1",
+                EmailAddressFrom = "gu_conta_de_teste@outlook.com",
+                HtmlBody = htmlBody,
             };
             
             SendMail(mail);
@@ -60,20 +53,39 @@ namespace Luiza.Labs.Sevices.Services
 
         public void SendRecovery(User user)
         {
-
             _logger.LogInformation("[{0}] -  Started", nameof(SendRecovery));
+
+            //TODO: gerar token do usuário e mandar no link do email /updatePassword com o token no cabeçalho
+            var htmlBody = CreateBodyTemplate(user.Name, TemplateEmail.RecoverPassword, "http://localhost:4200/updatePassword");
             var mail = new Mail
             {
                 Subject = "Recover Password!",
-                TextBody = $"Hello {user.Name}, you requested the recover of the password, click in this link to recover password, case you're has not requested, ignore this e-mail",
+                HtmlBody = htmlBody,
                 EmailAddressTo = user.EmailAddress,
                 NameSend = user.Name,
-                Pass = "",
+                Pass = "dE1@oito@1",
                 EmailAddressFrom = "gu_conta_de_teste@outlook.com"
             };
 
             SendMail(mail);
             _logger.LogInformation("[{0}] -  Finish", nameof(SendRecovery));
+        }
+
+        private string CreateBodyTemplate(string name, TemplateEmail template, string url = default!)
+        {
+            var htmlBody = template switch
+            {
+                TemplateEmail.CreateSuccess => System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"\\template\\template-create.html"),
+                TemplateEmail.RecoverPassword => System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"\\template\\template-recovery.html")
+            };
+
+            htmlBody = htmlBody.Replace("{name}", name);
+            if (template is TemplateEmail.RecoverPassword)
+            {
+                htmlBody = htmlBody.Replace("{url}", url);
+            }
+         
+            return htmlBody;
         }
     }
 }

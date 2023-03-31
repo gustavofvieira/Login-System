@@ -134,6 +134,13 @@ namespace Luiza.Labs.Sevices.Services
             _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(Update), user.UserId);
         }
 
+        public async Task UpdatePassword(User user)
+        {
+            _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(UpdatePassword), user.UserId);
+            await _userRepository.UpdatePassword(user);
+            _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(UpdatePassword), user.UserId);
+        }
+
         public async Task Remove(Guid id)
         {
             _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(Remove), id);
