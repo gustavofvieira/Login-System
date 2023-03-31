@@ -3,9 +3,8 @@ using Luiza.Labs.Domain.ViewModel;
 
 namespace Luiza.Labs.Domain.Interfaces.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
-        Task AddUser(User user);
         Task<User> AuthenticateAsync(LoginVM loginVM);
         Task<User> GetUserByEmail(string email);
     }

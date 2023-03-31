@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Luiza.Labs.Domain.Constants;
+﻿using Luiza.Labs.Domain.Constants;
 using Luiza.Labs.Domain.Interfaces.Services;
 using Luiza.Labs.Domain.Models;
 using Luiza.Labs.Domain.Models.Auth;
@@ -50,7 +49,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
-            await _userService.AddUser(model);
+            await _userService.Add(model);
             return Ok();
         }
 
@@ -62,6 +61,16 @@ namespace Luiza.Labs.Web.Api.Controllers
         {
             await _userService.RecoverEmail(email);
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        [Authorize(Roles = Roles.Adm)]
+        public async Task<IActionResult> GetAll()
+        {
+            //_logger.LogInformation("[{Method}] - Started ", nameof(GetAll));
+            var users = await _userService.GetAll();
+            return Ok(users);
         }
     }
 }

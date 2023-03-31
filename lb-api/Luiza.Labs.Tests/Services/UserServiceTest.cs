@@ -33,7 +33,7 @@ namespace Luiza.Labs.Tests.Services
          }
 
         [Test]
-        public async Task ShouldAddWithSuccess()
+        public async Task ShouldAddUserWithSuccess()
          {
              //Arrange
              var service = new UserService(_validator.Object,_logger.Object, _userRepository.Object, _tokenService.Object, _emailService.Object);
@@ -41,14 +41,14 @@ namespace Luiza.Labs.Tests.Services
 
              //Act
 
-             await service.AddUser(user);
+             await service.Add(user);
 
              //Assert
              _logger.Verify(
                  x => x.Log(
                      LogLevel.Information,
                      It.IsAny<EventId>(),
-                     It.Is<It.IsAnyType>((o, t) => string.Equals("[AddUser] - Started", o.ToString(), StringComparison.InvariantCultureIgnoreCase)),
+                     It.Is<It.IsAnyType>((o, t) => string.Equals("[Add] - Started", o.ToString(), StringComparison.InvariantCultureIgnoreCase)),
                      It.IsAny<Exception>(),
                      (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()),
                  Times.Once);
@@ -57,7 +57,7 @@ namespace Luiza.Labs.Tests.Services
                  x => x.Log(
                      LogLevel.Information,
                      It.IsAny<EventId>(),
-                     It.Is<It.IsAnyType>((o, t) => string.Equals("[AddUser] - Finish", o.ToString(), StringComparison.InvariantCultureIgnoreCase)),
+                     It.Is<It.IsAnyType>((o, t) => string.Equals("[Add] - Finish", o.ToString(), StringComparison.InvariantCultureIgnoreCase)),
                      It.IsAny<Exception>(),
                      (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()),
                  Times.Once);

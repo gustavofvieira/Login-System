@@ -34,13 +34,13 @@ namespace Luiza.Labs.Sevices.Services
             _emailService = emailService;
         }
 
-        public async Task AddUser(User user)
+        public async Task Add(User user)
         {
             
             try
             {
 
-                _logger.LogInformation("[{0}] - Started", nameof(AddUser));
+                _logger.LogInformation("[{0}] - Started", nameof(Add));
 
                 var userBd = await _userRepository.GetUserByEmail(user.EmailAddress);
                 if (userBd is not null)
@@ -48,16 +48,16 @@ namespace Luiza.Labs.Sevices.Services
 
                 _validator.ValidateAndThrow(user);
                 EncryptPassword(user.Password);
-                await _userRepository.AddUser(user);
+                await _userRepository.Add(user);
 
                 _logger.LogInformation("Send Email to: {0}", user.EmailAddress);
                 _emailService.SendConfirmation(user);
-                _logger.LogInformation("[{0}] Send Email with success", nameof(AddUser));
-                _logger.LogInformation("[{0}] - Finish", nameof(AddUser));
+                _logger.LogInformation("[{0}] Send Email with success", nameof(Add));
+                _logger.LogInformation("[{0}] - Finish", nameof(Add));
             }
             catch(Exception ex)
             {
-                _logger.LogError("[{0}] is failed! with message: {1}", nameof(AddUser), ex.Message);
+                _logger.LogError("[{0}] is failed! with message: {1}", nameof(Add), ex.Message);
                 throw new DomainException(ex.Message);
             }
         }
@@ -109,6 +109,36 @@ namespace Luiza.Labs.Sevices.Services
             var senhaHash = EncryptPassword(senhaDigitada);
 
             return senhaHash == senhaCadastrada;
+        }
+
+        public async Task<List<User>> GetAll()
+        {
+            _logger.LogInformation("[{Mehtod}] - Started", nameof(GetAll));
+            var users = await _userRepository.GetAll();
+            _logger.LogInformation("[{Mehtod}] - Finish", nameof(GetAll));
+            return users;
+        }
+
+        public async Task<User> GetById(Guid id)
+        {
+            _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(GetById), id);
+            var user = await _userRepository.GetById(id);
+            _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(GetById), id);
+            return user;
+        }
+
+        public async Task Update(User user)
+        {
+            _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(Update), user.UserId);
+            await _userRepository.Update(user);
+            _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(Update), user.UserId);
+        }
+
+        public async Task Remove(Guid id)
+        {
+            _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(Remove), id);
+            await _userRepository.Remove(id);
+            _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(Remove), id);
         }
     }
 }
