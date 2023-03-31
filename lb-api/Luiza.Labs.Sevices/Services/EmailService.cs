@@ -56,7 +56,7 @@ namespace Luiza.Labs.Sevices.Services
             _logger.LogInformation("[{0}] -  Started", nameof(SendRecovery));
 
             //TODO: gerar token do usuário e mandar no link do email /updatePassword com o token no cabeçalho
-            var htmlBody = CreateBodyTemplate(user.Name, TemplateEmail.RecoverPassword, "http://localhost:4200/updatePassword");
+            var htmlBody = CreateBodyTemplate(user.Name, TemplateEmail.RecoverPassword, $"http://localhost:4200/updatePassword/{user.UserId}");
             var mail = new Mail
             {
                 Subject = "Recover Password!",
@@ -75,8 +75,8 @@ namespace Luiza.Labs.Sevices.Services
         {
             var htmlBody = template switch
             {
-                TemplateEmail.CreateSuccess => System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"\\template\\template-create.html"),
-                TemplateEmail.RecoverPassword => System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"\\template\\template-recovery.html")
+                TemplateEmail.CreateSuccess => System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + "\\template\\template-create.html"),
+                TemplateEmail.RecoverPassword => System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + "\\template\\template-recovery.html")
             };
 
             htmlBody = htmlBody.Replace("{name}", name);

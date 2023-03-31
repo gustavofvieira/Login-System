@@ -134,11 +134,18 @@ namespace Luiza.Labs.Sevices.Services
             _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(Update), user.UserId);
         }
 
-        public async Task UpdatePassword(User user)
+        public async Task UpdatePassword(Guid id, string password)
         {
-            _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(UpdatePassword), user.UserId);
+
+            _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(UpdatePassword),id);
+            var user = await _userRepository.GetById(id);
+            if (user is null)
+                throw new DomainException("User Not Found");
+            
+            user.Password = EncryptPassword(password);
+
             await _userRepository.UpdatePassword(user);
-            _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(UpdatePassword), user.UserId);
+            _logger.LogInformation("[{Mehtod}] - Finish, with ID: {id}", nameof(UpdatePassword), id);
         }
 
         public async Task Remove(Guid id)

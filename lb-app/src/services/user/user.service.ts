@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders,HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Login } from 'src/app/components/login/login';
-import { Token } from 'src/app/components/login/token';
+import { Login } from 'src/app/components/user/login/login';
+import { Token } from 'src/app/components/user/login/token';
 import { User } from 'src/app/components/user/create/user';
+import { ActivatedRoute } from '@angular/router';
 
 const httpOptions ={
   headers: new HttpHeaders({
@@ -22,7 +23,7 @@ export class UserService implements HttpInterceptor {
   setToken(token: string) {
     this.token = token;
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (this.token) {
@@ -51,6 +52,14 @@ export class UserService implements HttpInterceptor {
     console.log("service: ", emailAddress)
     const apiUrl = `${this.url}/recoverPassword`;
     return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions) 
+  }
+
+  UpdatePassword(password: string) : Observable<any>{
+    // var id = "123165"
+    let id = this.route.snapshot.paramMap.get('id');
+    console.log("service: ", this.route)
+    const apiUrl = `${this.url}/updatePassword/${id}`;
+    return this.http.post<any>(apiUrl, '"'+password+'"', httpOptions) 
   }
 
 }

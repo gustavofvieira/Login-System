@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { UserService } from 'src/services/user/user.service';
-import { LoginComponent } from './components/login/login.component';
-import { RecoverPassComponent } from './components/recoverPass/recover-pass.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RecoverPassComponent } from './components/user/recoverPass/recover-pass.component';
 import { CreateComponent } from './components/user/create/create.component';
 import { UpdatePasswordComponent } from './components/user/updatePassword/update-password.component';
 

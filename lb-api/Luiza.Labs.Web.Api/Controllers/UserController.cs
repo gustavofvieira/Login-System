@@ -62,11 +62,12 @@ namespace Luiza.Labs.Web.Api.Controllers
         }
 
         [HttpPost]
-        [Route("updatePassword")]
-        [Authorize(Roles = Roles.Adm+","+Roles.Common)]
-        public async Task<ActionResult<Token>> UpdatePassword([FromBody] User model)
+        [Route("updatePassword/{id}")]
+        [AllowAnonymous]
+        //[Authorize(Roles = Roles.Adm+","+Roles.Common)]
+        public async Task<ActionResult<Token>> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
         {
-            await _userService.UpdatePassword(model);
+            await _userService.UpdatePassword(id, password);
             return Ok();
         }
     }

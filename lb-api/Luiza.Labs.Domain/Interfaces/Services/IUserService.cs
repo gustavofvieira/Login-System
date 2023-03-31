@@ -10,6 +10,6 @@ namespace Luiza.Labs.Domain.Interfaces.Services
         Task<User> GetUserByEmail(string email);
         Task<Token> AuthenticateAsync(LoginVM loginVM);
         Task RecoverEmail(string email);
-        Task UpdatePassword(User user);
+        Task UpdatePassword(Guid id, string password);
     }
 }
