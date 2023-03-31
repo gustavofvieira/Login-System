@@ -47,7 +47,7 @@ namespace Luiza.Labs.Sevices.Services
                     throw new DomainException("E-mail Has Existent");
 
                 _validator.ValidateAndThrow(user);
-                EncryptPassword(user.Password);
+                user.Password = EncryptPassword(user.Password);
                 await _userRepository.Add(user);
 
                 _logger.LogInformation("Send Email to: {0}", user.EmailAddress);
