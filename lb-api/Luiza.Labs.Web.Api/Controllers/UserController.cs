@@ -56,7 +56,6 @@ namespace Luiza.Labs.Web.Api.Controllers
         [Authorize(Roles = Roles.Adm)]
         public async Task<IActionResult> GetAll()
         {
-            //_logger.LogInformation("[{Method}] - Started ", nameof(GetAll));
             var users = await _userService.GetAll();
             return Ok(users);
         }
@@ -64,7 +63,6 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpPost]
         [Route("updatePassword/{id}")]
         [AllowAnonymous]
-        //[Authorize(Roles = Roles.Adm+","+Roles.Common)]
         public async Task<ActionResult<Token>> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
         {
             await _userService.UpdatePassword(id, password);
