@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5E5u6xq4OtXvYpWo7Gg/2gNkAoQqZJNgx/bJl+/4oUkYp8diXBo2LqdzK+tCcOOBSx5up8j2v3THOvFm2GFFDQ==",
+  "dgSpecHash": "iVDa5OydUZArax3w09abTiwAhY1tZBb5h8G+Ofh+7OUmXcyutzpH+6NFYOInygST5muWS/K3015qIIRArQIydQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,8 @@
     "C:\\Users\\gusta\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\nunit.consolerunner\\3.16.3\\nunit.consolerunner.3.16.3.nupkg.sha512",
+    "C:\\Users\\gusta\\.nuget\\packages\\nunit3testadapter\\4.4.2\\nunit3testadapter.4.4.2.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\system.collections\\4.0.11\\system.collections.4.0.11.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\system.componentmodel.annotations\\4.5.0\\system.componentmodel.annotations.4.5.0.nupkg.sha512",

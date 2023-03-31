@@ -27,6 +27,7 @@ namespace Luiza.Labs.Tests.Services
             _validator = new();
              _logger = new();
             _tokenService = new();
+            _emailService = new();
             _userRepository = new();
              _fixture = new();
          }

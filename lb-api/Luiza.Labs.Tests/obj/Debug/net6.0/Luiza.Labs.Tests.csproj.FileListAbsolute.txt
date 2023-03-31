@@ -126,3 +126,9 @@ C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\Luiza.Labs.Sevices.dll
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\Luiza.Labs.Domain.pdb
 C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\Luiza.Labs.Sevices.pdb
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\NUnit3.TestAdapter.dll
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\NUnit3.TestAdapter.pdb
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\nunit.engine.dll
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\nunit.engine.api.dll
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\nunit.engine.core.dll
+C:\Users\gusta\Documents\Github\challenge-luiza-labs\lb-api\Luiza.Labs.Tests\bin\Debug\net6.0\testcentric.engine.metadata.dll

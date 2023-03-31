@@ -15,6 +15,8 @@
           "Microsoft.NET.Test.Sdk": "17.1.0",
           "Moq": "4.18.4",
           "NUnit": "3.13.3",
+          "NUnit.ConsoleRunner": "3.16.3",
+          "NUnit3TestAdapter": "4.4.2",
           "coverlet.collector": "3.1.2",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.3"
@@ -517,6 +519,8 @@
           }
         }
       },
+      "NUnit.ConsoleRunner/3.16.3": {},
+      "NUnit3TestAdapter/4.4.2": {},
       "Portable.BouncyCastle/1.9.0": {
         "runtime": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
@@ -1164,6 +1168,20 @@
       "sha512": "sha512-KNPDpls6EfHwC3+nnA67fh5wpxeLb3VLFAfLxrug6JMYDLHH6InaQIWR7Sc3y75d/9IKzMksH/gi08W7XWbmnQ==",
       "path": "nunit/3.13.3",
       "hashPath": "nunit.3.13.3.nupkg.sha512"
+    },
+    "NUnit.ConsoleRunner/3.16.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bhc4f0oVdS70xLaulPu2dMuUWK6hLj5fWLWmUnvbxyEA9w41sZNe6Xb3vPkcp+5OrIqggmtcRbhX+o5hoz62Jg==",
+      "path": "nunit.consolerunner/3.16.3",
+      "hashPath": "nunit.consolerunner.3.16.3.nupkg.sha512"
+    },
+    "NUnit3TestAdapter/4.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vA/iHYcR+LYw+pRWQugckC/zW2fXHaqMr2uA82NOBt8v4YK4wMJrQ7QC8XLc7PjetEZ96cPbBTWsDDtmQiRZTA==",
+      "path": "nunit3testadapter/4.4.2",
+      "hashPath": "nunit3testadapter.4.4.2.nupkg.sha512"
     },
     "Portable.BouncyCastle/1.9.0": {
       "type": "package",
