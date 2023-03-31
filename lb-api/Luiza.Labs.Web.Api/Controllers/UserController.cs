@@ -55,7 +55,7 @@ namespace Luiza.Labs.Web.Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = Roles.Manager)]
+        //[Authorize(Roles = Roles.Manager)]
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
             await _userService.AddUser(model);
@@ -66,9 +66,9 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpPost]
         [Route("recoverPassword")]
         [AllowAnonymous]
-        public ActionResult RecoverPassword([FromBody] string email)
+        public async Task<ActionResult<string>> RecoverPassword([FromBody] string email)
         {
-            _userService.RecoverEmail(email);
+            await _userService.RecoverEmail(email);
             return Ok();
         }
     }

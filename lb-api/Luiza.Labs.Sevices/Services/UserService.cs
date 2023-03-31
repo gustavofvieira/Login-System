@@ -45,10 +45,10 @@ namespace Luiza.Labs.Sevices.Services
 
                 var userBd = await _userRepository.GetUserByEmail(user.EmailAddress);
                 if (userBd is not null)
-                    throw new DomainException("User Has Existent");
+                    throw new DomainException("E-mail Has Existent");
 
                 _validator.ValidateAndThrow(user);
-                user.Password = EncryptPassword(user.Password);
+                EncryptPassword(user.Password);
                 await _userRepository.AddUser(user);
 
                 _logger.LogInformation("Send Email to: {0}", user.EmailAddress);
