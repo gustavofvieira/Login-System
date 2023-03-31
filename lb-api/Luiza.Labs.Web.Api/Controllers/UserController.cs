@@ -14,36 +14,28 @@ namespace Luiza.Labs.Web.Api.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IEmailService _emailService;
-        public UserController(IUserService userService, IEmailService emailService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _emailService = emailService;
         }
         // GET: api/<LoginController>
         [HttpGet]
         [Route("authenticated")]
         [Authorize]
-        public string Authenticated() => String.Format("Autenticado - {0}", User.Identity.Name);
+        public string Authenticated() => String.Format("Autenticado - {0}", User?.Identity?.Name);
 
-        // GET api/<LoginController>/5
-        [HttpGet]
-        [Route("anonymous")]
-        [AllowAnonymous]
-        public string Anonymous() => "Anonimo";
 
         [HttpGet]
-        [Route("manager")]
-        [Authorize(Roles = "manager")]
-        public string Manager() => "Gerente";
+        [Route("common")]
+        [Authorize(Roles = Roles.Common+","+ Roles.Adm)]
+        public string Common() => Roles.Common;
 
         [HttpGet]
-        [Route("employee")]
-        [Authorize(Roles = "employee, manager")]
-        public string Employee() => "Funcionario";
+        [Route("adm")]
+        [Authorize(Roles = Roles.Adm)]
+        public string Adm() => Roles.Adm;
 
 
-        // POST api/<LoginController>
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
@@ -55,7 +47,7 @@ namespace Luiza.Labs.Web.Api.Controllers
 
         [HttpPost]
         [Route("create")]
-        //[Authorize(Roles = Roles.Manager)]
+        [AllowAnonymous]
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
             await _userService.AddUser(model);

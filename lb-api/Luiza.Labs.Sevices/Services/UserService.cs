@@ -7,7 +7,6 @@ using Luiza.Labs.Domain.Models;
 using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.ViewModel;
 using Microsoft.Extensions.Logging;
-using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 
