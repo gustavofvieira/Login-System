@@ -40,7 +40,13 @@ namespace Luiza.Labs.Sevices.Services
             
             try
             {
+
                 _logger.LogInformation("[{0}] - Started", nameof(AddUser));
+
+                var userBd = await _userRepository.GetUserByEmail(user.EmailAddress);
+                if (userBd is not null)
+                    throw new DomainException("User Has Existent");
+
                 _validator.ValidateAndThrow(user);
                 user.Password = EncryptPassword(user.Password);
                 await _userRepository.AddUser(user);

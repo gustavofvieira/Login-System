@@ -1,9 +1,8 @@
 ﻿using Luiza.Labs.Domain.Interfaces.Services;
-using MimeKit;
+using Luiza.Labs.Domain.Models;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
-using Luiza.Labs.Domain.Models;
-using Luiza.Labs.Domain.Interfaces.Repositories;
+using MimeKit;
 
 namespace Luiza.Labs.Sevices.Services
 {
