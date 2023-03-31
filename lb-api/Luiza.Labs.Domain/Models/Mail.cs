@@ -10,12 +10,10 @@ namespace Luiza.Labs.Domain.Models
     {
 
         public string Subject { get; set; } = string.Empty;
-        public string NameReceive { get; set; } = string.Empty;
         public string NameSend { get; set; } = string.Empty;
         public string Pass { get; set; } = string.Empty;
         public string EmailAddressFrom { get; set; } = string.Empty;
         public string EmailAddressTo { get; set; } = string.Empty;
-        public string TextBody { get; set; } = string.Empty;
         public string HtmlBody { get; set; } = string.Empty;
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Luiza.Labs.Domain.Models.Auth
 {
-    public class SettingsOptions
+    public sealed class SettingsOptions
     {
-        public const string Settings = "Settings";
+        //public const string Settings = nameof(Settings);
         public string Secret { get; set; } = string.Empty;
     }
 }

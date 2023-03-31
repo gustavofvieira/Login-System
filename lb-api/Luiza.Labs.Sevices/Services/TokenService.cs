@@ -12,22 +12,17 @@ namespace Luiza.Labs.Sevices.Services
 {
     public class TokenService : ITokenService
     {
-        //private readonly SettingsOptions _settings;
-        //private readonly IConfiguration _configuration;
+        private readonly SettingsOptions _settings;
 
-        //public TokenService(
-        //    //IOptions<SettingsOptions> settings,
-        //    IConfiguration configuration)
-        //{
-        //    //_settings = settings.Value;
-        //    _configuration = configuration;
-        //}
+        public TokenService(IOptions<SettingsOptions> settings)
+        {
+            _settings = settings.Value;
+        }
         public Token GenerateToken(User user)
         {
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            //var key = Encoding.ASCII.GetBytes(_settings.Secret);
-            var key = Encoding.ASCII.GetBytes("6e7b2ce2952496d9a8968259e8c2a3d4");
+            var key = Encoding.ASCII.GetBytes(_settings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

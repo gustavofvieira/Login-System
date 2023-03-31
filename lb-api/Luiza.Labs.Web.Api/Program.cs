@@ -11,6 +11,18 @@ var startup = new Startup(builder.Configuration);
 startup.ConfigureApp(builder.Services);
 
 builder.Services.AddCors();
+
+builder.Services.Configure<SettingsOptions>(
+    builder.Configuration.GetSection("SettingsOptions"));
+
+builder.Services.Configure<AuthSmtp>(
+    builder.Configuration.GetSection("AuthSmtp"));
+
+builder.Services.Configure<FrontService>(
+    builder.Configuration.GetSection("FrontService"));
+
+
+
 var key = Encoding.ASCII.GetBytes("6e7b2ce2952496d9a8968259e8c2a3d4");
 builder.Services.AddAuthentication(x =>
 {

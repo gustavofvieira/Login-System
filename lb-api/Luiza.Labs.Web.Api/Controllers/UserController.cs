@@ -38,7 +38,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
             await _userService.Add(model);
-            return Ok();
+            return Ok("Created with success!");
         }
 
 
@@ -48,7 +48,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<string>> RecoverPassword([FromBody] string email)
         {
             await _userService.RecoverEmail(email);
-            return Ok();
+            return Ok("Link to recover password sended to your e-mail");
         }
 
         [HttpGet]
@@ -66,7 +66,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<Token>> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
         {
             await _userService.UpdatePassword(id, password);
-            return Ok();
+            return Ok("Password update with success!");
         }
     }
 }

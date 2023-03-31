@@ -10,8 +10,6 @@ using Luiza.Labs.Infra.Setup.Extensions;
 using Luiza.Labs.Sevices.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Security.Cryptography;
 
 namespace Luiza.Labs.Infra.Setup
 {
@@ -34,7 +32,6 @@ namespace Luiza.Labs.Infra.Setup
 
         private void ConfigureServices(IServiceCollection services)
         {
-            //services.Configure<Settings>(Configuration.GetSection("Settings"));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IEmailService, EmailService>();
@@ -47,14 +44,8 @@ namespace Luiza.Labs.Infra.Setup
 
         private void ConfigureValidators(IServiceCollection services) 
         {
-            //services.AddSingleton<HashAlgorithm>();
             services.AddScoped<IValidator<User>, UserValidator>();
 
         }
-
-        //private void ConfigureOptions(IServiceCollection services) 
-        //{
-        //    services.Configure<Settings>(Configuration.GetSection("Settings"));
-        //}
     }
 }
