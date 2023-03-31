@@ -12,6 +12,8 @@ startup.ConfigureApp(builder.Services);
 
 builder.Services.AddCors();
 
+
+//Config AppSettings
 builder.Services.Configure<SettingsOptions>(
     builder.Configuration.GetSection("SettingsOptions"));
 

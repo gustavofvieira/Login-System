@@ -17,11 +17,11 @@ namespace Luiza.Labs.Web.Api.Controllers
         {
             _userService = userService;
         }
-        // GET: api/<LoginController>
+
         [HttpGet]
         [Route("authenticated")]
         [Authorize]
-        public async Task<ActionResult<string>> Authenticated() => Ok(String.Format("Olá {0}", User?.Identity?.Name));
+        public async Task<ActionResult<string>> Authenticated() => Ok(String.Format("Hello {0}, Welcome!", User?.Identity?.Name));
 
         [HttpPost]
         [Route("login")]
