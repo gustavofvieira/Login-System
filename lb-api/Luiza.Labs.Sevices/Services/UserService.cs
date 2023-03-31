@@ -7,6 +7,7 @@ using Luiza.Labs.Domain.Models;
 using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.ViewModel;
 using Microsoft.Extensions.Logging;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -45,13 +46,35 @@ namespace Luiza.Labs.Sevices.Services
                 await _userRepository.AddUser(user);
 
                 _logger.LogInformation("Send Email to: {0}", user.EmailAddress);
-                _emailService.SendConfirmation(user.EmailAddress);
+                _emailService.SendConfirmation(user);
                 _logger.LogInformation("[{0}] Send Email with success", nameof(AddUser));
                 _logger.LogInformation("[{0}] - Finish", nameof(AddUser));
             }
             catch(Exception ex)
             {
                 _logger.LogError("[{0}] is failed! with message: {1}", nameof(AddUser), ex.Message);
+                throw new DomainException(ex.Message);
+            }
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _userRepository.GetUserByEmail(email);
+        }
+
+        public async Task RecoverEmail(string email)
+        {
+            try
+            {
+                var user = await _userRepository.GetUserByEmail(email);
+                if (user is null)
+                    throw new DomainException("User Not Found");
+                
+                _emailService.SendRecovery(user);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("[{0}] is failed! with message: {1}", nameof(RecoverEmail), ex.Message);
                 throw new DomainException(ex.Message);
             }
         }

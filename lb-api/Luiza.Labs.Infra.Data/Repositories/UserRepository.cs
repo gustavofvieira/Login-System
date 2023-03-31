@@ -17,6 +17,7 @@ namespace Luiza.Labs.Infra.Data.Repositories
             _context = context;
         }
 
+        public async Task<User> GetUserByEmail(string email) => await _context.Users.AsQueryable().FirstOrDefaultAsync(u => u.EmailAddress.Equals(email));
         public async Task AddUser(User user) => await _context.Users.InsertOneAsync(user);
 
         public async Task<User> AuthenticateAsync(LoginVM loginVM)

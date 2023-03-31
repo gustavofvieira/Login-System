@@ -3,20 +3,18 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Logging;
 using Luiza.Labs.Domain.Models;
+using Luiza.Labs.Domain.Interfaces.Repositories;
 
 namespace Luiza.Labs.Sevices.Services
 {
     public class EmailService : IEmailService
     {
-        protected readonly ILogger _logger;
+        private readonly ILogger _logger;
+
 
         public EmailService(ILogger<EmailService> logger)
         {
             _logger = logger;
-        }
-        public Task SendEmail(string emailAdress)
-        {
-            throw new NotImplementedException();
         }
 
         public void SendMail(Mail mail)
@@ -44,15 +42,15 @@ namespace Luiza.Labs.Sevices.Services
         }
 
 
-        public void SendConfirmation(string emailAdress)
+        public void SendConfirmation(User user)
         {
             _logger.LogInformation("[{0}] -  Started",nameof(SendConfirmation));
             var mail = new Mail
             {
-                Subject = $"Congratulations {emailAdress}, your account has created with success!",
+                Subject = $"Congratulations {user.Name}, your account has created with success!",
                 TextBody = "Welcome to LuizaLabs, Your account has created in the App!",
-                EmailAddressTo = emailAdress,
-                NameSend = emailAdress,
+                EmailAddressTo = user.EmailAddress,
+                NameSend = user.Name,
                 Pass = "",
                 EmailAddressFrom = "gu_conta_de_teste@outlook.com"
             };
@@ -61,30 +59,22 @@ namespace Luiza.Labs.Sevices.Services
             _logger.LogInformation("[{0}] -  Finish",nameof(SendConfirmation));
         }
 
-        public void SendRecovery(string emailAdress)
+        public void SendRecovery(User user)
         {
-            var email = new MimeMessage();
 
-            email.From.Add(new MailboxAddress("Luiza Labs", emailAdress));
-            email.To.Add(new MailboxAddress("Receiver Name", emailAdress));
-
-            email.Subject = "Testing out email sending";
-            email.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
+            _logger.LogInformation("[{0}] -  Started", nameof(SendRecovery));
+            var mail = new Mail
             {
-                Text = "Hello all the way from the land of C#"
+                Subject = "Recover Password!",
+                TextBody = $"Hello {user.Name}, you requested the recover of the password, click in this link to recover password, case you're has not requested, ignore this e-mail",
+                EmailAddressTo = user.EmailAddress,
+                NameSend = user.Name,
+                Pass = "",
+                EmailAddressFrom = "gu_conta_de_teste@outlook.com"
             };
-            using (var smtp = new SmtpClient())
-            {
-                //smtp.Connect("smtp.server.address", 587, false);
-                smtp.Connect("smtp.office365.com", 587, false);
 
-                // Note: only needed if the SMTP server requires authentication
-                //smtp.Authenticate("smtp_username", "smtp_password");
-                smtp.Authenticate("gu_conta_de_teste@outlook.com", "dE1@oito@1");
-
-                smtp.Send(email);
-                smtp.Disconnect(true);
-            }
+            SendMail(mail);
+            _logger.LogInformation("[{0}] -  Finish", nameof(SendRecovery));
         }
     }
 }

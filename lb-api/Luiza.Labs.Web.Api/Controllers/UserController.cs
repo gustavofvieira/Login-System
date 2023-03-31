@@ -68,7 +68,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         [AllowAnonymous]
         public ActionResult RecoverPassword([FromBody] string email)
         {
-            _emailService.SendRecovery(email);
+            _userService.RecoverEmail(email);
             return Ok();
         }
     }

@@ -1,9 +1,10 @@
-﻿namespace Luiza.Labs.Domain.Interfaces.Services
+﻿using Luiza.Labs.Domain.Models;
+
+namespace Luiza.Labs.Domain.Interfaces.Services
 {
     public interface IEmailService
     {
-        Task SendEmail(string emailAdress);
-        void SendRecovery(string emailAdress);
-        void SendConfirmation(string emailAdress);
+        void SendRecovery(User user);
+        void SendConfirmation(User user);
     }
 }

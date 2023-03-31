@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from 'src/app/components/login/login';
 import { Token } from 'src/app/components/login/token';
+import { User } from 'src/app/components/user/create/user';
 
 const httpOptions ={
   headers: new HttpHeaders({
@@ -40,4 +41,15 @@ export class UserService implements HttpInterceptor {
     console.log("response: ",response)
     return response;
   }
+
+  Create(user: User) : Observable<any>{
+    const apiUrl = `${this.url}/create`;
+    return this.http.post<any>(apiUrl, user, httpOptions)
+  }
+
+  RecoverPass(emailAddress: string) : Observable<any>{
+    const apiUrl = `${this.url}/recoverPassword`;
+    return this.http.post<any>(apiUrl, emailAddress, httpOptions) 
+  }
+
 }

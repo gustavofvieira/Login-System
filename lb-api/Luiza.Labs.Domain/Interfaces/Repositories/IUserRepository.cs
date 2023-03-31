@@ -7,5 +7,6 @@ namespace Luiza.Labs.Domain.Interfaces.Repositories
     {
         Task AddUser(User user);
         Task<User> AuthenticateAsync(LoginVM loginVM);
+        Task<User> GetUserByEmail(string email);
     }
 }

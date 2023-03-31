@@ -6,35 +6,48 @@
         <h6>{{ titleForm }}</h6>
         <hr />
   
-        <form [formGroup]="form" (ngSubmit)="SendLogin()">  
+        <form [formGroup]="form" (ngSubmit)="Send()">  
           <div class="form-group">
+            <label>Name</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="name"
+            />
+            
             <label>E-mail</label>
             <input
               type="email"
               class="form-control form-control-sm"
               formControlName="emailAddress"
             />
-          </div>
-  
-          <div class="form-group">
-            <label>Password</label>
+          
+
+          <label>Password</label>
             <input
               type="password"
               class="form-control form-control-sm"
               formControlName="password"
             />
+
+          <label>Confirm Password</label>
+            <input
+              type="password"
+              class="form-control form-control-sm"
+              formControlName="password"
+            />
+     
           </div>
-  
           <div class="container">
             <div class="row">
               <div>
                 <button type="submit" class="btn btn-sm btn-outline-secondary">
-                  Login
+                  Send
                 </button>
-               </div>
-              <div class="pl-1">
-                <a href="/recoverPass">Forgot my password</a>
               </div>
+              <!-- <div class="pl-1">
+                <button type="button" class="btn btn-sm btn-light" (click)="Back()">Back</button>
+              </div> -->
             </div>
           </div>
         </form>
