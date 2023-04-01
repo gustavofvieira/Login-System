@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserService } from 'src/services/user/user.service';
 import { Login } from '../login/login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recover-pass',
@@ -13,34 +13,43 @@ import { Login } from '../login/login';
 export class RecoverPassComponent implements OnInit{
 
   constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService,
-  private modalService: BsModalService) {}
+   private router: Router) {}
 
 
   form: any;
   titleForm: string | undefined;
 
   fileForm: any;
-  
-  modalRef: BsModalRef | any;
 
   ngOnInit(): void {
     this.form = new FormGroup({
       emailAddress: new FormControl(null),
     });
-    // this.loginService.GetAll().subscribe((result) => {
-    //   this.candidates = result;
-    // });
   }
 
   SendRecoverPass(): void {
     const login: Login = this.form.value;
-    console.log("Login: ",login)
-      this.userService.RecoverPass(login.emailAddress).subscribe((resultado) => {
-        console.log(resultado)
-        // this.userService.Login().subscribe((registros) => {
-        //   this.candidates = registros;
-        // });
-      });
+      this.userService.RecoverPass(login.emailAddress)
+      .subscribe((result) => {
+        alert(result);
+        this.Back()
+      })
+
+      // .subscribe(
+      //   result => {
+      //     alert(result);
+      //     this.Back()
+      //   },
+      //   error => {
+      //   console.log("error comp: ",error)
+      //     alert(error.message);
+      //   }
+      // )
+  
+  }
+
+  Back(): void {
+    this.router.navigate(['/']);
   }
 }
 

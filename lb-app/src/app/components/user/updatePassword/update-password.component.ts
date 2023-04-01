@@ -14,7 +14,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class UpdatePasswordComponent implements OnInit{
 
   constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService,
-  private modalService: BsModalService, private route: ActivatedRoute,) {}
+  private router: Router) {}
 
 
   form: any;
@@ -25,9 +25,7 @@ export class UpdatePasswordComponent implements OnInit{
   modalRef: BsModalRef | any;
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.id = params['id'];
-    });
+
     this.form = new FormGroup({
       password: new FormControl(null),
     });
@@ -36,12 +34,14 @@ export class UpdatePasswordComponent implements OnInit{
   Send(): void {
     const login: Login = this.form.value;
     console.log("Login: ",login)
-      this.userService.UpdatePassword(login.password).subscribe((resultado) => {
-        console.log(resultado)
-        // this.userService.Login().subscribe((registros) => {
-        //   this.candidates = registros;
-        // });
+      this.userService.UpdatePassword(login.password).subscribe((result) => {
+        alert(result);
+        this.Back()
       });
+  }
+
+  Back(): void {
+    this.router.navigate(['/']);
   }
 }
 

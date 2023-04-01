@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'recoverPass', component: RecoverPassComponent },
   { path: 'create', component: CreateComponent },
-  { path: 'updatePassword/:id', component: UpdatePasswordComponent },
+  { path: 'updatePassword', component: UpdatePasswordComponent },
 ];
 
 @NgModule({

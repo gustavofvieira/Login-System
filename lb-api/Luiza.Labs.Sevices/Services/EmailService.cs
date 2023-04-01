@@ -66,7 +66,7 @@ namespace Luiza.Labs.Sevices.Services
         {
             _logger.LogInformation("[{Method}] -  Started", nameof(SendRecovery));
 
-            var htmlBody = CreateBodyTemplate(user.Name, TemplateEmail.RecoverPassword, $"{_frontService.Host}{_frontService.UpdatePassword}{recoverId}");
+            var htmlBody = CreateBodyTemplate(user.Name, TemplateEmail.RecoverPassword, $"{_frontService.Host}{_frontService.UpdatePassword}?codeRecover={recoverId}");
             var mail = new Mail
             {
                 Subject = "Recover Password!",

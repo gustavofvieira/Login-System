@@ -39,12 +39,8 @@ export class LoginComponent implements OnInit{
     const login: Login = this.form.value;
       this.userService.Login(login).subscribe((result) => {
         this.token = result;
-        this.localStorageService.set("token", this.token);
-        this.userService.Authenticated(this.token.jwtKey).subscribe((resultAuth) => {
-            
-          
-          this.router.navigate(['/home'], { queryParams: { welcome: resultAuth } });
-        });
+        this.localStorageService.set("token", this.token.jwtKey);
+        this.router.navigate(['/home']);
       });
   }
 }

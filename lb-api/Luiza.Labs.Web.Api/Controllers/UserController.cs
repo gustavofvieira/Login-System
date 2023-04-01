@@ -6,7 +6,6 @@ using Luiza.Labs.Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Luiza.Labs.Web.Api.Controllers
 {
@@ -40,7 +39,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
             await _userService.Add(model);
-            return Ok(JsonSerializer.Serialize("Created with success!"));
+            return Ok(JsonSerializer.Serialize("Account created with success!"));
         }
 
 
@@ -68,7 +67,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
         {
             await _userService.UpdatePassword(id, password);
-            return Ok(JsonSerializer.Serialize("Password update with success!"));
+            return Ok(JsonSerializer.Serialize("Password update with success!\nLog in with new password"));
         }
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/cor
 import {FormGroup, FormControl} from '@angular/forms';
 import { UserService } from 'src/services/user/user.service';
 import { User } from './user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -11,7 +12,7 @@ import { User } from './user';
 
 export class CreateComponent implements OnInit{
 
-  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService) {}
+  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService, private router: Router) {}
 
 
   form: any;
@@ -31,9 +32,14 @@ export class CreateComponent implements OnInit{
   Send(): void {
     const user: User = this.form.value;
     console.log(user)
-      this.userService.Create(user).subscribe((resultado) => {
-        console.log(resultado)
+      this.userService.Create(user).subscribe((result) => {
+        alert(result);
+        this.Back()
       });
+  }
+
+  Back(): void {
+    this.router.navigate(['/']);
   }
 }
 
