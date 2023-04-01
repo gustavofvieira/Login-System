@@ -95,7 +95,7 @@ namespace Luiza.Labs.Sevices.Services
             var userRepository = await _userRepository.AuthenticateAsync(loginVM);
 
             if (userRepository == null)
-                throw new DomainException("User not found.");
+                throw new DomainException("E-mail or password wrong!");
 
            var token = _tokenService.GenerateToken(userRepository);
            return token;
@@ -107,13 +107,6 @@ namespace Luiza.Labs.Sevices.Services
             SHA256Managed sha256 = new SHA256Managed();
             byte[] hash = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
-        }
-
-        public bool VerifyPassword(string senhaDigitada, string senhaCadastrada)
-        {
-            var senhaHash = EncryptPassword(senhaDigitada);
-
-            return senhaHash == senhaCadastrada;
         }
 
         public async Task<List<User>> GetAll()

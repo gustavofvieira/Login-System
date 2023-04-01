@@ -5,7 +5,7 @@ import { Login } from 'src/app/components/user/login/login';
 import { Token } from 'src/app/components/user/login/token';
 import { User } from 'src/app/components/user/create/user';
 import { ActivatedRoute } from '@angular/router';
-// import { catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { LocalStorageService } from 'src/services/local-storage.service';
 
 
@@ -20,16 +20,13 @@ const httpOptions ={
 })
 export class UserService {
   url = 'https://localhost:7141/v1/user';
-  
+  message ="";
  
   constructor(private http: HttpClient, private route: ActivatedRoute,private localStorageService: LocalStorageService) { }
-
-
 
   Login(login: Login) : Observable<any>{
     const apiUrl = `${this.url}/login`;
     var response = this.http.post<Token>(apiUrl, login, httpOptions)
-    console.log("response: ",response)
     return response;
   }
 
@@ -38,31 +35,41 @@ export class UserService {
     return this.http.post<any>(apiUrl, user, httpOptions)
   }
 
-  RecoverPass(emailAddress: string) : Observable<any>{
-    const apiUrl = `${this.url}/recoverPassword`;
-    return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions) 
-  }
-
   // RecoverPass(emailAddress: string) : Observable<any>{
-
   //   const apiUrl = `${this.url}/recoverPassword`;
-  //   return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions).pipe(
-  //     catchError(this.handleError)
-  //   );
-  //   }
+  //   return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions) 
+  // }
 
+  RecoverPass(emailAddress: string) : Observable<any>{
+    this.setMessage("E-mail address not found!");
+    const apiUrl = `${this.url}/recoverPassword`;
+    return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions).pipe(
+      catchError(this.handleError)
+    );
+    }
 
-    // private handleError(error: HttpErrorResponse) {
-    //   if (error.error instanceof ErrorEvent) {
-    //     console.error('Ocorreu um erro:', error.error.message);
-    //   } else {
-    //     console.error(
-    //       `Código do erro ${error.status}, ` +
-    //       `erro: ${JSON.stringify(error.error)}`);
-    //   }
-    //   return throwError(
-    //     'Algo deu errado; por favor, tente novamente mais tarde.');
-    // }
+    setMessage(message: string)
+    {
+      return this.message = message;
+    }
+
+    getMessage()
+    {
+      return this.message;
+    }
+
+    private handleError(error: HttpErrorResponse) {
+      console.log("handleError: ",error)
+      if (error.error instanceof ErrorEvent) {
+        console.error('Ocorreu um erro:', error.error.message);
+      } else {
+        console.error(
+          `Código do erro ${error.status}, ` +
+          `erro: ${JSON.stringify(error.error)}`);
+      }
+      return throwError(
+        this.getMessage());
+    }
 
 
 
