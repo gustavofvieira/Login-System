@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, LOCALE_ID  } from '@angular/core';
 import { LocalStorageService } from 'src/services/local-storage.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from 'src/services/user/user.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserService } from 'src/services/user/user.service';
 
 export class HomeComponent implements OnInit{
 
-  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService, private route: ActivatedRoute,private localStorageService: LocalStorageService,
+  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService, private localStorageService: LocalStorageService,
   private router: Router) {}
 
   welcome: string | undefined;

@@ -18,12 +18,15 @@ export class CreateComponent implements OnInit{
   form: any;
   titleForm: string | undefined;
   fileForm: any;
+  confirmPassword!: string;
+  passwordStrength!: number;
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl(null),
       emailAddress: new FormControl(null),
       password: new FormControl(null),
+      confirmPassword: new FormControl(null),
       role: new FormControl("Common"),
 
     });
@@ -31,7 +34,10 @@ export class CreateComponent implements OnInit{
 
   Send(): void {
     const user: User = this.form.value;
-    console.log(user)
+    if(user.confirmPassword !== user.password){
+      alert("The passwords must be same!!!")
+      return;
+    }
       this.userService.Create(user).subscribe((result) => {
         alert(result);
         this.Back()

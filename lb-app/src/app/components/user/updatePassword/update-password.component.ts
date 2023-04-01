@@ -1,9 +1,10 @@
 import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef} from 'ngx-bootstrap/modal';
 import { UserService } from 'src/services/user/user.service';
 import { Login } from '../login/login';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-update-password',
@@ -18,9 +19,9 @@ export class UpdatePasswordComponent implements OnInit{
 
 
   form: any;
-  titleForm: string | undefined;
-  id: any;
-  fileForm: any;
+  password!: string;
+  confirmPassword!: string;
+  passwordStrength!: number;
   
   modalRef: BsModalRef | any;
 
@@ -28,11 +29,17 @@ export class UpdatePasswordComponent implements OnInit{
 
     this.form = new FormGroup({
       password: new FormControl(null),
+      confirmPassword: new FormControl(null),
     });
   }
 
   Send(): void {
     const login: Login = this.form.value;
+    if(login.confirmPassword !== login.password){
+      console.log(login)
+      alert("The passwords must be same!!!")
+      return;
+    }
     console.log("Login: ",login)
       this.userService.UpdatePassword(login.password).subscribe((result) => {
         alert(result);

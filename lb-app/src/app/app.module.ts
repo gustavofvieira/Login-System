@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ModalModule.forRoot(),  
+    ModalModule.forRoot()
   ],
   providers: [HttpClientModule,UserService],
   bootstrap: [AppComponent]
