@@ -15,5 +15,6 @@ namespace Luiza.Labs.Infra.Data.Context
         public IMongoDatabase Database { get; private set; }
 
         public IMongoCollection<User> Users => Database.GetCollection<User>("Users");
+        public IMongoCollection<RecoverPassword> RecoverPasswords => Database.GetCollection<RecoverPassword>("RecoverPasswords");
     }
 }

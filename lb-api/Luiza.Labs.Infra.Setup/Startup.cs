@@ -35,11 +35,13 @@ namespace Luiza.Labs.Infra.Setup
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IRecoverPasswordService, RecoverPasswordService>();
         }
 
         private void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRecoverPasswordRepository, RecoverPasswordRepository>();
         }
 
         private void ConfigureValidators(IServiceCollection services) 

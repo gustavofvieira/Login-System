@@ -19,19 +19,22 @@ namespace Luiza.Labs.Sevices.Services
         private readonly IEmailService _emailService;
         private readonly IUserRepository _userRepository; 
         private readonly ITokenService _tokenService;
+        private readonly IRecoverPasswordService _recoverPasswordService;
 
         public UserService(
             IValidator<User> validator, 
             ILogger<UserService> logger,
             IUserRepository userRepository,
             ITokenService tokenService, 
-            IEmailService emailService)
+            IEmailService emailService,
+            IRecoverPasswordService recoverPasswordService)
         {
             _validator = validator;
             _logger = logger;
             _userRepository = userRepository;
             _tokenService = tokenService;
             _emailService = emailService;
+            _recoverPasswordService = recoverPasswordService;
         }
 
         public async Task Add(User user)
@@ -52,12 +55,12 @@ namespace Luiza.Labs.Sevices.Services
 
                 _logger.LogInformation("Send Email to: {0}", user.EmailAddress);
                 _emailService.SendConfirmation(user);
-                _logger.LogInformation("[{0}] Send Email with success", nameof(Add));
-                _logger.LogInformation("[{0}] - Finish", nameof(Add));
+                _logger.LogInformation("[{Method}] Send Email with success", nameof(Add));
+                _logger.LogInformation("[{Method}] - Finish", nameof(Add));
             }
             catch(Exception ex)
             {
-                _logger.LogError("[{0}] is failed! with message: {1}", nameof(Add), ex.Message);
+                _logger.LogError("[{Method}] is failed! with message: {Message}", nameof(Add), ex.Message);
                 throw new DomainException(ex.Message);
             }
         }
@@ -75,11 +78,13 @@ namespace Luiza.Labs.Sevices.Services
                 if (user is null)
                     throw new DomainException("User Not Found");
                 
-                _emailService.SendRecovery(user);
+               var recoverId = await _recoverPasswordService.CreateRecoverPassword(user);
+
+                _emailService.SendRecovery(user, recoverId);
             }
             catch(Exception ex)
             {
-                _logger.LogError("[{0}] is failed! with message: {1}", nameof(RecoverEmail), ex.Message);
+                _logger.LogError("[{Method}] is failed! with message: {Message}", nameof(RecoverEmail), ex.Message);
                 throw new DomainException(ex.Message);
             }
         }
@@ -138,10 +143,13 @@ namespace Luiza.Labs.Sevices.Services
         {
 
             _logger.LogInformation("[{Mehtod}] - Started, with ID: {id}", nameof(UpdatePassword),id);
-            var user = await _userRepository.GetById(id);
+
+            var recover = await _recoverPasswordService.ValidExpirateDate(id);
+
+            var user = await _userRepository.GetById(recover.UserId);
             if (user is null)
                 throw new DomainException("User Not Found");
-            
+
             user.Password = EncryptPassword(password);
 
             await _userRepository.UpdatePassword(user);

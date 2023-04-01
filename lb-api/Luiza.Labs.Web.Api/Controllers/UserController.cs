@@ -48,7 +48,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<string>> RecoverPassword([FromBody] string email)
         {
             await _userService.RecoverEmail(email);
-            return Ok("Link to recover password sended to your e-mail");
+            return Ok("Link to recover password sended to your e-mail, you have 5 minutes to validate");
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpPost]
         [Route("updatePassword/{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<Token>> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
+        public async Task<ActionResult> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
         {
             await _userService.UpdatePassword(id, password);
             return Ok("Password update with success!");
