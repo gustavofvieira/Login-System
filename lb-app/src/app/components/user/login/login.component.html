@@ -1,12 +1,10 @@
-  <!-- <div class="container p-5" *ngIf="visibleForm"> -->
-    <div class="container p-5" >
+   <div class="container p-5" >
     <div class="row">
-      <!-- <div class="col-6 border boder-light rounded p-5 shadow" *ngIf="form"> -->
-        <div class="col-6 border boder-light rounded p-5 shadow">
-        <h6>{{ titleForm }}</h6>
+       <div class="col-6 border boder-light rounded p-5 shadow">
+        <h6>Login</h6>
         <hr />
   
-        <form [formGroup]="form" (ngSubmit)="SendLogin()">  
+        <form [formGroup]="form" (ngSubmit)="Send()">  
           <div class="form-group">
             <label>E-mail</label>
             <input
@@ -34,6 +32,9 @@
                </div>
               <div class="pl-1">
                 <a href="/recoverPass">Forgot my password</a>
+              </div>
+              <div class="pl-1">
+                <a href="/create">Create account!</a>
               </div>
             </div>
           </div>

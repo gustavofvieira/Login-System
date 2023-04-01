@@ -1,6 +1,5 @@
 import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UserService } from 'src/services/user/user.service';
 import { User } from './user';
 
@@ -12,16 +11,12 @@ import { User } from './user';
 
 export class CreateComponent implements OnInit{
 
-  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService,
-  private modalService: BsModalService) {}
+  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService) {}
 
 
   form: any;
   titleForm: string | undefined;
-
   fileForm: any;
-  
-  modalRef: BsModalRef | any;
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -31,9 +26,6 @@ export class CreateComponent implements OnInit{
       role: new FormControl("Common"),
 
     });
-    // this.loginService.GetAll().subscribe((result) => {
-    //   this.candidates = result;
-    // });
   }
 
   Send(): void {
@@ -41,9 +33,6 @@ export class CreateComponent implements OnInit{
     console.log(user)
       this.userService.Create(user).subscribe((resultado) => {
         console.log(resultado)
-        // this.userService.Login().subscribe((registros) => {
-        //   this.candidates = registros;
-        // });
       });
   }
 }

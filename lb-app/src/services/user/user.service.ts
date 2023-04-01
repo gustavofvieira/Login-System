@@ -54,8 +54,21 @@ export class UserService implements HttpInterceptor {
     return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions) 
   }
 
+  Authenticated(token: string) : Observable<any>{
+    
+    const httpOptionsAuth ={
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : 'Bearer '+token
+      })
+    }
+
+    const apiUrl = `${this.url}/authenticated`;
+
+    return this.http.get<any>(apiUrl, httpOptionsAuth) 
+  }
+
   UpdatePassword(password: string) : Observable<any>{
-    // var id = "123165"
     let id = this.route.snapshot.paramMap.get('id');
     console.log("service: ", this.route)
     const apiUrl = `${this.url}/updatePassword/${id}`;

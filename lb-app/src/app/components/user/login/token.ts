@@ -1,3 +1,3 @@
 export class Token {
-    jwt: string | undefined;
+    jwtKey!: string;
 }

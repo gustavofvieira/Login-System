@@ -3,6 +3,10 @@ import {FormGroup, FormControl} from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Login } from './login';
 import { UserService } from 'src/services/user/user.service';
+import { LocalStorageService } from 'src/services/local-storage.service';
+import { Token } from './token';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -13,12 +17,12 @@ import { UserService } from 'src/services/user/user.service';
 export class LoginComponent implements OnInit{
 
   constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService,
-  private modalService: BsModalService) {}
+  private router: Router,private localStorageService: LocalStorageService) {}
 
 
   form: any;
   titleForm: string | undefined;
-
+  token!: Token;
   fileForm: any;
   
   modalRef: BsModalRef | any;
@@ -28,22 +32,19 @@ export class LoginComponent implements OnInit{
       emailAddress: new FormControl(null),
       password: new FormControl(null),
     });
-    // this.loginService.GetAll().subscribe((result) => {
-    //   this.candidates = result;
-    // });
   }
 
-  SendLogin(): void {
+  Send(): void {
 
-
-    
-    
     const login: Login = this.form.value;
-      this.userService.Login(login).subscribe((resultado) => {
-        console.log(resultado)
-        // this.userService.Login().subscribe((registros) => {
-        //   this.candidates = registros;
-        // });
+      this.userService.Login(login).subscribe((result) => {
+        this.token = result;
+        this.localStorageService.set("token", this.token);
+        this.userService.Authenticated(this.token.jwtKey).subscribe((resultAuth) => {
+            
+          
+          this.router.navigate(['/home'], { queryParams: { welcome: resultAuth } });
+        });
       });
   }
 }

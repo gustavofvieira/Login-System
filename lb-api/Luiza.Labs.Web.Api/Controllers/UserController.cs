@@ -5,6 +5,8 @@ using Luiza.Labs.Domain.Models.Auth;
 using Luiza.Labs.Domain.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Luiza.Labs.Web.Api.Controllers
 {
@@ -21,7 +23,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         [HttpGet]
         [Route("authenticated")]
         [Authorize]
-        public async Task<ActionResult<string>> Authenticated() => Ok(String.Format("Hello {0}, Welcome!", User?.Identity?.Name));
+        public async Task<ActionResult> Authenticated() => Ok(JsonSerializer.Serialize(String.Format("Hello {0}, Welcome!", User?.Identity?.Name)));
 
         [HttpPost]
         [Route("login")]
@@ -38,7 +40,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<string>> Create([FromBody] User model)
         {
             await _userService.Add(model);
-            return Ok("Created with success!");
+            return Ok(JsonSerializer.Serialize("Created with success!"));
         }
 
 
@@ -48,7 +50,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult<string>> RecoverPassword([FromBody] string email)
         {
             await _userService.RecoverEmail(email);
-            return Ok("Link to recover password sended to your e-mail, you have 5 minutes to validate");
+            return Ok(JsonSerializer.Serialize("Link to recover password sended to your e-mail, you have 5 minutes to validate"));
         }
 
         [HttpGet]
@@ -66,7 +68,7 @@ namespace Luiza.Labs.Web.Api.Controllers
         public async Task<ActionResult> UpdatePassword([FromRoute] Guid id, [FromBody] string password)
         {
             await _userService.UpdatePassword(id, password);
-            return Ok("Password update with success!");
+            return Ok(JsonSerializer.Serialize("Password update with success!"));
         }
     }
 }
