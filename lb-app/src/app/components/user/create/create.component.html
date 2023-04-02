@@ -1,0 +1,47 @@
+<div class="container p-5" >
+    <div class="row">
+        <div class="col-6 border boder-light rounded p-5 shadow">
+        <h6>{{ titleForm }}</h6>
+        <hr />
+  
+        <form [formGroup]="form" (ngSubmit)="Send()">  
+          <div class="form-group">
+            <label>Name</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="name"
+            />
+            
+            <label>E-mail</label>
+            <input name="emailAddress" type="email"  class="form-control form-control-sm" formControlName="emailAddress" placeholder="email@domain.net">
+        
+          <label>Password</label>
+            <input
+            name="password"
+              type="password"
+              class="form-control form-control-sm"
+              formControlName="password"
+            />
+
+          <label>Confirm Password</label>
+            <input
+              type="password"
+              class="form-control form-control-sm"
+              formControlName="confirmPassword"
+            />
+     
+          </div>
+          <div class="container">
+            <div class="row">
+              <div>
+                <button id="btnSend" type="submit" class="btn btn-sm btn-outline-secondary">
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

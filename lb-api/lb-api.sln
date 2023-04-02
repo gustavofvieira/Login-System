@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{E6277374-5F8D-49E6-9323-F316F2AE5AE7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luiza.Labs.Web.Api", "Luiza.Labs.Web.Api\Luiza.Labs.Web.Api.csproj", "{A5D1DCEF-5245-46D8-BC31-ED665E3501FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{DF205E5C-D0E5-4C98-9A56-435A1628BBCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{BEB6991E-CF80-481E-957B-B165EEC64F47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Domain", "4 - Domain", "{437ACDE4-A90B-4193-901C-5A46236387EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infra", "5 - Infra", "{EAC2E057-D8D5-45A2-9810-2763321B2690}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", "{6A022A9B-BD59-4A38-8707-737472C55E98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luiza.Labs.Sevices", "Luiza.Labs.Sevices\Luiza.Labs.Sevices.csproj", "{43482281-1DC5-4D26-86A2-AFD67ADFAE27}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luiza.Labs.Domain", "Luiza.Labs.Domain\Luiza.Labs.Domain.csproj", "{14607FAE-0FF3-43BF-9660-FF7DC2447878}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luiza.Labs.Infra.Data", "Luiza.Labs.Infra.Data\Luiza.Labs.Infra.Data.csproj", "{3CB827CC-642E-4052-9D39-50D5540F62E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luiza.Labs.Tests.Units", "Luiza.Labs.Tests\Luiza.Labs.Tests.Units.csproj", "{6789B76B-5C7E-4F53-B03E-452571C7D6F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - Setup", "5.2 - Setup", "{8FE458D2-6ACA-4A16-AE9E-690E75941E5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luiza.Labs.Infra.Setup", "Luiza.Labs.Infra.Setup\Luiza.Labs.Infra.Setup.csproj", "{DB7ED21F-FAD0-4B6F-9F93-CB5307A875DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{15B204E4-9A5B-4A41-A1E4-69FEC217F6C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luiza.Labs.Tests.Automated", "Luiza.Labs.Tests.Automated\Luiza.Labs.Tests.Automated.csproj", "{D0892125-2FC7-4EAD-9123-63655CAA72A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5D1DCEF-5245-46D8-BC31-ED665E3501FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D1DCEF-5245-46D8-BC31-ED665E3501FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D1DCEF-5245-46D8-BC31-ED665E3501FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D1DCEF-5245-46D8-BC31-ED665E3501FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43482281-1DC5-4D26-86A2-AFD67ADFAE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43482281-1DC5-4D26-86A2-AFD67ADFAE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43482281-1DC5-4D26-86A2-AFD67ADFAE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43482281-1DC5-4D26-86A2-AFD67ADFAE27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14607FAE-0FF3-43BF-9660-FF7DC2447878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14607FAE-0FF3-43BF-9660-FF7DC2447878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14607FAE-0FF3-43BF-9660-FF7DC2447878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14607FAE-0FF3-43BF-9660-FF7DC2447878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB827CC-642E-4052-9D39-50D5540F62E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB827CC-642E-4052-9D39-50D5540F62E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB827CC-642E-4052-9D39-50D5540F62E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB827CC-642E-4052-9D39-50D5540F62E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6789B76B-5C7E-4F53-B03E-452571C7D6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6789B76B-5C7E-4F53-B03E-452571C7D6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6789B76B-5C7E-4F53-B03E-452571C7D6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6789B76B-5C7E-4F53-B03E-452571C7D6F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7ED21F-FAD0-4B6F-9F93-CB5307A875DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7ED21F-FAD0-4B6F-9F93-CB5307A875DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7ED21F-FAD0-4B6F-9F93-CB5307A875DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7ED21F-FAD0-4B6F-9F93-CB5307A875DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0892125-2FC7-4EAD-9123-63655CAA72A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0892125-2FC7-4EAD-9123-63655CAA72A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0892125-2FC7-4EAD-9123-63655CAA72A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0892125-2FC7-4EAD-9123-63655CAA72A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A5D1DCEF-5245-46D8-BC31-ED665E3501FB} = {E6277374-5F8D-49E6-9323-F316F2AE5AE7}
+		{6A022A9B-BD59-4A38-8707-737472C55E98} = {EAC2E057-D8D5-45A2-9810-2763321B2690}
+		{43482281-1DC5-4D26-86A2-AFD67ADFAE27} = {DF205E5C-D0E5-4C98-9A56-435A1628BBCE}
+		{14607FAE-0FF3-43BF-9660-FF7DC2447878} = {437ACDE4-A90B-4193-901C-5A46236387EA}
+		{3CB827CC-642E-4052-9D39-50D5540F62E5} = {6A022A9B-BD59-4A38-8707-737472C55E98}
+		{6789B76B-5C7E-4F53-B03E-452571C7D6F7} = {15B204E4-9A5B-4A41-A1E4-69FEC217F6C5}
+		{8FE458D2-6ACA-4A16-AE9E-690E75941E5A} = {EAC2E057-D8D5-45A2-9810-2763321B2690}
+		{DB7ED21F-FAD0-4B6F-9F93-CB5307A875DE} = {8FE458D2-6ACA-4A16-AE9E-690E75941E5A}
+		{D0892125-2FC7-4EAD-9123-63655CAA72A6} = {15B204E4-9A5B-4A41-A1E4-69FEC217F6C5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C2172EF-08B7-4237-A886-2B75761512C5}
+	EndGlobalSection
+EndGlobal
