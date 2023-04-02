@@ -53,8 +53,8 @@ namespace Luiza.Labs.Sevices.Services
                 Subject = $"Congratulations {user.Name}, your account has created with success!",
                 EmailAddressTo = user.EmailAddress,
                 NameSend = user.Name,
-                Pass = "dE1@oito@1",
-                EmailAddressFrom = "gu_conta_de_teste@outlook.com",
+                Pass = _authSmtp.Password,
+                EmailAddressFrom = _authSmtp.Email,
                 HtmlBody = htmlBody,
             };
             
@@ -73,8 +73,8 @@ namespace Luiza.Labs.Sevices.Services
                 HtmlBody = htmlBody,
                 EmailAddressTo = user.EmailAddress,
                 NameSend = user.Name,
-                Pass = "dE1@oito@1",
-                EmailAddressFrom = "gu_conta_de_teste@outlook.com"
+                Pass = _authSmtp.Password,
+                EmailAddressFrom = _authSmtp.Email
             };
 
             SendMail(mail);
