@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef, Inject, LOCALE_ID  } from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import { Component, OnInit, Inject, LOCALE_ID  } from '@angular/core';
+import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserService } from 'src/services/user/user.service';
 import { User } from './user';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class CreateComponent implements OnInit{
 
-  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService, private router: Router) {}
+  constructor(@Inject(LOCALE_ID) public locale: string,private userService: UserService, private router: Router, private formBuilder: FormBuilder) {}
 
 
   form: any;
@@ -22,6 +22,8 @@ export class CreateComponent implements OnInit{
   passwordStrength!: number;
 
   ngOnInit(): void {
+    
+
     this.form = new FormGroup({
       name: new FormControl(null),
       emailAddress: new FormControl(null),
@@ -30,6 +32,13 @@ export class CreateComponent implements OnInit{
       role: new FormControl("Common"),
 
     });
+    this.form = this.formBuilder.group({
+      emailAddress: ['', [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]]
+    });
+  }
+
+  onSubmit() {
+    console.log(this.form.emailAddress.value);
   }
 
   Send(): void {
@@ -38,10 +47,23 @@ export class CreateComponent implements OnInit{
       alert("The passwords must be same!!!")
       return;
     }
-      this.userService.Create(user).subscribe((result) => {
-        alert(result);
-        this.Back()
-      });
+
+    if (user.emailAddress && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(user.emailAddress)) {
+      alert("Email Address not valid")
+      return;
+    }
+    if(user.emailAddress ){
+
+    }
+      this.userService.Create(user).subscribe(
+        result => {
+          alert(result);
+          this.Back()
+        },
+        error => {
+          alert(error);
+        }
+      );
   }
 
   Back(): void {

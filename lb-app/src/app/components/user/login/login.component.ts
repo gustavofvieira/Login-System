@@ -37,11 +37,16 @@ export class LoginComponent implements OnInit{
   Send(): void {
 
     const login: Login = this.form.value;
-      this.userService.Login(login).subscribe((result) => {
-        this.token = result;
-        this.localStorageService.set("token", this.token.jwtKey);
-        this.router.navigate(['/home']);
-      });
+      this.userService.Login(login).subscribe(
+        result => {
+          this.token = result;
+          this.localStorageService.set("token", this.token.jwtKey);
+          this.router.navigate(['/home']);
+        },
+        error => {
+          alert(error);
+        }
+      );
   }
 }
 

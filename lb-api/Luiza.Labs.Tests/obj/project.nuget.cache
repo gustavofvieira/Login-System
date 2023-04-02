@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tP/tPvrz8xrMxdGRjCtjwP2uC3eDmV+BYqbqQbMP72Y5RzMQ/6wYq9sZoDl1/9vvbjv3NWaewDrAarvACg/hAg==",
+  "dgSpecHash": "MCSRkd0RzN4vw4nVwNKG7rO/8/Ge1dJpn9eQWpR74zosxgkzSYiX8PeXtvHyVfqS6RpnBHFIxSL97V2uYmC6Rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.csproj",
+  "projectFilePath": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.Units.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gusta\\.nuget\\packages\\autofixture\\4.18.0\\autofixture.4.18.0.nupkg.sha512",
     "C:\\Users\\gusta\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",

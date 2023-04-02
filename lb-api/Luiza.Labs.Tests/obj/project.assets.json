@@ -5282,9 +5282,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.csproj",
-      "projectName": "Luiza.Labs.Tests",
-      "projectPath": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.Units.csproj",
+      "projectName": "Luiza.Labs.Tests.Units",
+      "projectPath": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\Luiza.Labs.Tests.Units.csproj",
       "packagesPath": "C:\\Users\\gusta\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\gusta\\Documents\\Github\\challenge-luiza-labs\\lb-api\\Luiza.Labs.Tests\\obj\\",
       "projectStyle": "PackageReference",

@@ -16,15 +16,11 @@
             />
             
             <label>E-mail</label>
-            <input
-              type="email"
-              class="form-control form-control-sm"
-              formControlName="emailAddress"
-            />
-          
-
+            <input name="emailAddress" type="email"  class="form-control form-control-sm" formControlName="emailAddress" placeholder="email@domain.net">
+        
           <label>Password</label>
             <input
+            name="password"
               type="password"
               class="form-control form-control-sm"
               formControlName="password"
@@ -41,7 +37,7 @@
           <div class="container">
             <div class="row">
               <div>
-                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                <button id="btnSend" type="submit" class="btn btn-sm btn-outline-secondary">
                   Send
                 </button>
               </div>

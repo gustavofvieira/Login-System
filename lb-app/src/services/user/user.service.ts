@@ -20,59 +20,29 @@ const httpOptions ={
 })
 export class UserService {
   url = 'https://localhost:7141/v1/user';
-  message ="";
  
   constructor(private http: HttpClient, private route: ActivatedRoute,private localStorageService: LocalStorageService) { }
 
   Login(login: Login) : Observable<any>{
     const apiUrl = `${this.url}/login`;
-    var response = this.http.post<Token>(apiUrl, login, httpOptions)
-    return response;
+    return this.http.post<Token>(apiUrl, login, httpOptions).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error, "E-mail or Password wrong!"))
+    );
   }
 
   Create(user: User) : Observable<any>{
     const apiUrl = `${this.url}/create`;
-    return this.http.post<any>(apiUrl, user, httpOptions)
+    return this.http.post<any>(apiUrl, user, httpOptions).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error, "Error to create user!"))
+    );
   }
 
-  // RecoverPass(emailAddress: string) : Observable<any>{
-  //   const apiUrl = `${this.url}/recoverPassword`;
-  //   return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions) 
-  // }
-
-  RecoverPass(emailAddress: string) : Observable<any>{
-    this.setMessage("E-mail address not found!");
+  RecoverPass(emailAddress: string): Observable<any> {
     const apiUrl = `${this.url}/recoverPassword`;
-    return this.http.post<any>(apiUrl, '"'+emailAddress+'"', httpOptions).pipe(
-      catchError(this.handleError)
+    return this.http.post<any>(apiUrl, '"' + emailAddress + '"', httpOptions).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error, "E-mail address not found!"))
     );
-    }
-
-    setMessage(message: string)
-    {
-      return this.message = message;
-    }
-
-    getMessage()
-    {
-      return this.message;
-    }
-
-    private handleError(error: HttpErrorResponse) {
-      console.log("handleError: ",error)
-      if (error.error instanceof ErrorEvent) {
-        console.error('Ocorreu um erro:', error.error.message);
-      } else {
-        console.error(
-          `Código do erro ${error.status}, ` +
-          `erro: ${JSON.stringify(error.error)}`);
-      }
-      return throwError(
-        this.getMessage());
-    }
-
-
-
+  }
 
   Authenticated() : Observable<any>{
     const httpOptionsAuth ={
@@ -82,7 +52,9 @@ export class UserService {
       })
     }
     const apiUrl = `${this.url}/authenticated`;
-    return this.http.get<any>(apiUrl, httpOptionsAuth) 
+    return this.http.get<any>(apiUrl, httpOptionsAuth).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error, "Error to Authenticate!"))
+    ); 
   }
 
   UpdatePassword(password: string) : Observable<any>{
@@ -92,7 +64,20 @@ export class UserService {
     });
 
     const apiUrl = `${this.url}/updatePassword/${codeRecover}`;
-    return this.http.post<any>(apiUrl, '"'+password+'"', httpOptions) 
+    return this.http.post<any>(apiUrl, '"'+password+'"', httpOptions).pipe(
+      catchError((error: HttpErrorResponse) => this.handleError(error, "Error to Update Password!"))
+    );
+  }
+
+  private handleError(error: HttpErrorResponse, customErrorMessage: string) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('Ocorreu um erro:', error.error.message);
+    } else {
+      console.error(
+        `Código do erro ${error.status}, ` +
+        `erro: ${JSON.stringify(error.error)}`);
+    }
+    return throwError(customErrorMessage);
   }
 
 }

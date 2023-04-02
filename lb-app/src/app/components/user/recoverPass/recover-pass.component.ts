@@ -30,11 +30,6 @@ export class RecoverPassComponent implements OnInit{
   SendRecoverPass(): void {
     const login: Login = this.form.value;
       this.userService.RecoverPass(login.emailAddress)
-      // .subscribe((result) => {
-      //   alert(result);
-      //   this.Back()
-      // })
-
       .subscribe(
         result => {
           alert(result);
