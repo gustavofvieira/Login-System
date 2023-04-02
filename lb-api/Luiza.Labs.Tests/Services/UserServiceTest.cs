@@ -18,6 +18,7 @@ namespace Luiza.Labs.Tests.Services
          private Mock<IUserRepository> _userRepository = default!;
          private Mock<ITokenService> _tokenService = default!;
          private Mock<IEmailService> _emailService = default!;
+         private Mock<IRecoverPasswordService> _recoverPasswordService = default!;
          private Mock<ILogger<UserService>> _logger = default!;
          private Fixture _fixture = default!;
 
@@ -28,6 +29,7 @@ namespace Luiza.Labs.Tests.Services
              _logger = new();
             _tokenService = new();
             _emailService = new();
+            _recoverPasswordService = new();
             _userRepository = new();
              _fixture = new();
          }
@@ -36,7 +38,7 @@ namespace Luiza.Labs.Tests.Services
         public async Task ShouldAddUserWithSuccess()
          {
              //Arrange
-             var service = new UserService(_validator.Object,_logger.Object, _userRepository.Object, _tokenService.Object, _emailService.Object);
+             var service = new UserService(_validator.Object,_logger.Object, _userRepository.Object, _tokenService.Object, _emailService.Object, _recoverPasswordService.Object);
              var user = _fixture.Build<User>().Create();
 
              //Act
