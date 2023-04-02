@@ -25,7 +25,8 @@ a aplicação contém validação de rota por JWT, contendo dois Roles 'Adm' e '
 
 
 ## Aplicação
-
+as seguintes configurações deverão ser realizadas na no appsettings, no caminho: lb-api/Luiza.Labs.Web.Api/appsettings.Development.json
+ 
 Aplique os valores das configurações, o **AuthSmtp** deve ser aplicado os valores do host, porta, email e senha.
 ```
 "AuthSmtp": {
