@@ -1,6 +1,6 @@
 # Estrutura do projeto
 
-
+Indicado abrir a solução para depuração no Visual Studio 2022 
 ## Padrões
 
 **DDD
